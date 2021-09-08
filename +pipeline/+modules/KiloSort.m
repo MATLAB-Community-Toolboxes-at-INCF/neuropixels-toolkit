@@ -8,12 +8,8 @@ classdef KiloSort < pipeline.TaskBase
     end
     
     methods
-        function obj = KiloSort(task_input)
-            obj.task_input = task_input;
-        end
-        
-        function execute(obj)
-            obj.task_result = strcat(obj.task_input, ' task result');
+        function obj = execute(obj)
+            obj.task_result = strcat(obj.task_input, ' KiloSort result');
         end
     end
 end

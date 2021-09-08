@@ -8,12 +8,8 @@ classdef CatGT < pipeline.TaskBase
     end
     
     methods
-        function obj = CatGT(task_input)
-            obj.task_input = task_input;
-        end
-        
-        function execute(obj)
-            obj.task_result = strcat(obj.task_input, ' task result');
+        function obj = execute(obj)
+            obj.task_result = strcat(obj.task_input, ' CatGT result');
         end
     end
 end
