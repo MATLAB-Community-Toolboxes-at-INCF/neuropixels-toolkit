@@ -1,16 +1,16 @@
-classdef CatGT < pipeline.TaskBase
+classdef CatGT < pipeline.StageBase
     %CatGT Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        task_input
-        task_config
-        task_result
+        stage_input
+        stage_config
+        stage_result
     end
     
     methods
         function obj = execute(obj)
-            obj.task_result = strcat(obj.task_input, ' CatGT result');
+            obj.stage_result = strcat(obj.stage_input, ' CatGT result');
         end
     end
 end

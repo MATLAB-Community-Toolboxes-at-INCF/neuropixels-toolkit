@@ -10,5 +10,5 @@ kilo_sort = KiloSort;
 pipeline.assemble_pipeline({cat_gt, kilo_sort});
 
 % run pipeline
-pipeline.run();
+pipeline.execute();
 disp(pipeline.pipeline_result);

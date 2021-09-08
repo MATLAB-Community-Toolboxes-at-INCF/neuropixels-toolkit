@@ -1,15 +1,15 @@
-classdef (Abstract) TaskBase < handle
+classdef (Abstract) StageBase < handle
     %TaskBase is an abstract class for a pipeline task
     %   Detailed explanation goes here
     
     properties(Abstract)
-        task_input
-        task_config
-        task_result
+        stage_input
+        stage_config
+        stage_result
     end
     
     methods(Abstract)
-        task_result = execute(obj)
+        stage_result = execute(obj)
     end
 end
 

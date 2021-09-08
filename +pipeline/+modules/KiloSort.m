@@ -1,16 +1,16 @@
-classdef KiloSort < pipeline.TaskBase
+classdef KiloSort < pipeline.StageBase
     %KiloSort Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        task_input
-        task_config
-        task_result
+        stage_input
+        stage_config
+        stage_result
     end
     
     methods
         function obj = execute(obj)
-            obj.task_result = strcat(obj.task_input, ' KiloSort result');
+            obj.stage_result = strcat(obj.stage_input, ' KiloSort result');
         end
     end
 end

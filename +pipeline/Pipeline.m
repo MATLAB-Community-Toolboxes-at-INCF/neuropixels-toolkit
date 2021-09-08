@@ -4,7 +4,7 @@ classdef Pipeline < pipeline.PipelineBase
     
     properties
         pipeline_input
-        tasks
+        stages
         pipeline_config
         pipeline_result
     end
@@ -14,29 +14,23 @@ classdef Pipeline < pipeline.PipelineBase
             obj.pipeline_input = pipeline_input;
         end
         
-        function assemble_pipeline(obj, task_list)
-            obj.tasks = task_list;
+        function assemble_pipeline(obj, stage_list)
+            obj.stages = stage_list;
         end
         
-        function run(obj)
-            for task_id = 1:length(obj.tasks)
-                % take a task from the task list
-                task = obj.tasks{task_id};
-                % the first task takes input from pipeline input
-                if task_id == 1
-                    task.task_input = obj.pipeline_input;
-                % the following tasks take input from the previous task
-                else
-                    last_task = obj.tasks{task_id-1};
-                    task.task_input = last_task.task_result;
+        function execute(obj)
+            prev = 0;
+            obj.stages{1}.stage_input = obj.pipeline_input;
+            for stage = obj.stages
+                curr = stage{:};
+                if prev ~= 0
+                    curr.stage_input = prev.stage_result;
                 end
-                % execute task and save result in task.task_result
-                task.execute()
-                % save the last task's result as pipeline result
-                if task_id == length(obj.tasks)
-                    obj.pipeline_result = task.task_result;
-                end
+                curr.execute();
+                prev = curr;
             end
+            obj.pipeline_result = prev.stage_result;
+            
         end
     end
 end

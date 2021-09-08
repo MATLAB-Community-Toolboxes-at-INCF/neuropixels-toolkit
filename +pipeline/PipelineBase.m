@@ -4,14 +4,14 @@ classdef (Abstract) PipelineBase < handle
     
     properties(Abstract)
         pipeline_input
-        tasks
+        stages
         pipeline_config
         pipeline_result
     end
     
     methods(Abstract)
-        tasks = assemble_pipeline(obj, task_list)
-        pipeline_result = run(obj)
+        stages = assemble_pipeline(obj, stage_list)
+        pipeline_result = execute(obj)
     end
 end
 
