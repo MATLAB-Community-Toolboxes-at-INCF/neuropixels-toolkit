@@ -4,6 +4,7 @@ classdef (Abstract) TaskBase < handle
     
     properties(Abstract)
         task_input
+        task_config
         task_result
     end
     

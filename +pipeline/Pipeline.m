@@ -5,6 +5,7 @@ classdef Pipeline < pipeline.PipelineBase
     properties
         pipeline_input
         tasks
+        pipeline_config
         pipeline_result
     end
     

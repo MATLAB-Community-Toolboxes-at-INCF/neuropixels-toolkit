@@ -5,6 +5,7 @@ classdef (Abstract) PipelineBase < handle
     properties(Abstract)
         pipeline_input
         tasks
+        pipeline_config
         pipeline_result
     end
     

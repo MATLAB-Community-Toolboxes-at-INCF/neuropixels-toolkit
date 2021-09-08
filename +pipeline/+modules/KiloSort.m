@@ -4,6 +4,7 @@ classdef KiloSort < pipeline.TaskBase
     
     properties
         task_input
+        task_config
         task_result
     end
     
