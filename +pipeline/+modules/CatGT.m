@@ -1,5 +1,5 @@
-classdef Task < pipeline.TaskBase
-    %Task Summary of this class goes here
+classdef CatGT < pipeline.TaskBase
+    %CatGT Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -8,7 +8,7 @@ classdef Task < pipeline.TaskBase
     end
     
     methods
-        function obj = Task(task_input)
+        function obj = CatGT(task_input)
             obj.task_input = task_input;
         end
         

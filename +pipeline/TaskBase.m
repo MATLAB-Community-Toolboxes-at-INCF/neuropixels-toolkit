@@ -8,7 +8,7 @@ classdef (Abstract) TaskBase < handle
     end
     
     methods(Abstract)
-        task_result = execute(task_input)
+        task_result = execute(obj)
     end
 end
 

@@ -1,5 +1,5 @@
-classdef Task < pipeline.TaskBase
-    %Task Summary of this class goes here
+classdef KiloSort < pipeline.TaskBase
+    %KiloSort Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -8,12 +8,12 @@ classdef Task < pipeline.TaskBase
     end
     
     methods
-        function obj = Task(task_input)
+        function obj = KiloSort(task_input)
             obj.task_input = task_input;
         end
         
         function execute(obj)
-            obj.task_result = strcat(obj.task_input, 'task result';
+            obj.task_result = strcat(obj.task_input, ' task result');
         end
     end
 end

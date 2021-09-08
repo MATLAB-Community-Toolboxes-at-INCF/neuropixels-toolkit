@@ -9,8 +9,8 @@ classdef (Abstract) PipelineBase < handle
     end
     
     methods(Abstract)
-        tasks = assemble_pipeline(task_list)
-        pipeline_result = run(pipeline_input)
+        tasks = assemble_pipeline(obj, task_list)
+        pipeline_result = run(obj)
     end
 end
 

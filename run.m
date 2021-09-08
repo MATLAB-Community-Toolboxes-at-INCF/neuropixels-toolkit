@@ -1,11 +1,12 @@
 import pipeline.Pipeline
-import pipeline.Task
+import pipeline.modules.CatGT
+import pipeline.modules.KiloSort
 pipeline = Pipeline(123);
-task = Task('123');
-task.execute();
-disp(task);
-disp(task.task_result);
-pipeline.assemble_pipeline([task, task, task])
+
+cat_gt = CatGT('123');
+kilo_sort = KiloSort('123');
+
+pipeline.assemble_pipeline([cat_gt, kilo_sort])
 pipeline.run();
 disp(pipeline);
 disp(pipeline.pipeline_result);
