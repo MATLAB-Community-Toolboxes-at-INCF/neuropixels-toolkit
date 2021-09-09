@@ -1,8 +1,13 @@
 import pipeline.Pipeline
-import pipeline.modules.CatGT
-import pipeline.modules.KiloSort
+import pipeline.Utils
+import pipeline.stages.CatGT
+import pipeline.stages.KiloSort
+
+% load config file
+config = Utils.load_json('config.json');
+
 % set pipeline input
-pipeline = Pipeline('123');
+pipeline = Pipeline('123', config);
 
 % assemble pipeline by modules
 cat_gt = CatGT;
