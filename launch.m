@@ -18,7 +18,10 @@ pipeline.assemble_pipeline({cat_gt, kilo_sort});
 pipeline.execute();
 disp(pipeline.pipeline_result);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % run python modules
-test = py.importlib.import_module('py_modules.test');
-py.importlib.reload(test);
-py.py_modules.test.pyversion();
+caller = py.importlib.import_module('py_modules.caller');
+py.importlib.reload(caller);
+py.py_modules.caller.pyversion();
+py.py_modules.caller.call_create_input_json();
+py.py_modules.caller.call_helper();
