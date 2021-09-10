@@ -20,8 +20,10 @@ disp(pipeline.pipeline_result);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % run python modules
+% pyenv('Version','C:\ProgramData\Anaconda3\envs\spike_sorting\python.exe');
 caller = py.importlib.import_module('py_modules.caller');
 py.importlib.reload(caller);
 py.py_modules.caller.pyversion();
 py.py_modules.caller.call_create_input_json();
 py.py_modules.caller.call_helper();
+
