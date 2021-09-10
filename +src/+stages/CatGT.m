@@ -1,5 +1,5 @@
-classdef KiloSort < pipeline.StageBase
-    %KiloSort Summary of this class goes here
+classdef CatGT < src.stages.StageBase
+    %CatGT Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -10,7 +10,7 @@ classdef KiloSort < pipeline.StageBase
     
     methods
         function obj = execute(obj)
-            obj.stage_result = strcat(obj.stage_input, ' KiloSort result');
+            obj.stage_result = strcat(obj.stage_input, ' CatGT result');
         end
     end
 end

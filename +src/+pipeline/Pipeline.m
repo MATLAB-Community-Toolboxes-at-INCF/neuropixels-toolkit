@@ -1,4 +1,4 @@
-classdef Pipeline < pipeline.PipelineBase
+classdef Pipeline < handle
     %Pipeline Summary of this class goes here
     %   Detailed explanation goes here
     
