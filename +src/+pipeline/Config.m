@@ -1,4 +1,4 @@
-classdef RunSpec < handle
+classdef Config < handle
     %RunSpec Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -11,7 +11,7 @@ classdef RunSpec < handle
     end
     
     methods
-        function obj=RunSpec()
+        function obj=Config()
         end
     end
 end
