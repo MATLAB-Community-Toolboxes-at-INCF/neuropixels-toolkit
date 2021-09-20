@@ -224,19 +224,19 @@ for curr = run_specs
         catGT_input_json{i} = fullfile(json_directory, strcat(session_id, prb, '_CatGT', '-input.json'));
         catGT_output_json{i} = fullfile(json_directory, strcat(session_id, prb, '_CatGT', '-output.json'));
 
-	    % build extract string for SYNC channel for this probe
+	% build extract string for SYNC channel for this probe
         sync_extract = strcat('-SY=', prb, ',-1,6,500');
 
-	    % if this is the first probe proceessed, process the ni stream with it
+	% if this is the first probe proceessed, process the ni stream with it
         if i == 1 && ni_present
             catGT_stream_string = '-ap -ni';
             extract_string = strcat(sync_extract, ' ', ni_extract_string);
         else
-                catGT_stream_string = '-ap';
-                extract_string = sync_extract;
+            catGT_stream_string = '-ap';
+            extract_string = sync_extract;
         end
 	
-	    % build name of first trial to be concatenated/processed;
+	% build name of first trial to be concatenated/processed;
         % allows reaidng of the metadata
         run_str = strcat(spec{1}, '_g', spec{2}); 
         run_folder = run_str;
