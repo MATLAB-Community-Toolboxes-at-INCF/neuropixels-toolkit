@@ -54,7 +54,7 @@ ksTh_dict('thalamus') = '[10,4]';
 % -----------
 % External tool/module path
 % -----------
-ecephys_directory = '/home/ubuntu/neuropixel/ecephys_spike_sorting';
+ecephys_directory = '/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting';
 kilosort_repository = '/home/ubuntu/neuropixel/Kilosort-3.0';
 KS2ver = '3.0';
 npy_matlab_repository = '/home/ubuntu/neuropixel/npy-matlab';
@@ -187,7 +187,7 @@ modules = {
 % };
 
 % json_directory = 'D:\ecephys_fork\json_files';
-json_directory = 'configs';
+json_directory = '/home/ubuntu/neuropixel/neuropixels-toolkit/configs';
 
 % -----------------------
 % -----------------------
