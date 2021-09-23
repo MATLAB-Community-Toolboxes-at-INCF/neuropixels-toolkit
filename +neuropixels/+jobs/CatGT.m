@@ -1,4 +1,4 @@
-classdef CatGT < src.jobs.JobBase
+classdef CatGT < neuropixels.jobs.JobBase
     %CatGT Summary of this class goes here
     %   Detailed explanation goes here
     

@@ -12,11 +12,11 @@
         "trigger_string": "0,0"
     },
     "cluster_metrics": {
-        "cluster_metrics_file": "/usr/share/data_for_ecephys/subject1_session1/metrics.csv"
+        "cluster_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/metrics.csv"
     },
     "common_files": {
-        "probe_json": "/usr/share/data_for_ecephys/subject1_session1",
-        "settings_json": "/usr/share/data_for_ecephys/subject1_session1"
+        "probe_json": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+        "settings_json": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
     },
     "depth_estimation_params": {
         "air_gap": 25,
@@ -25,7 +25,7 @@
             384
         ],
         "diff_thresh": -0.06,
-        "figure_location": "/usr/share/data_for_ecephys/subject1_session1/probe_depth.png",
+        "figure_location": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/probe_depth.png",
         "freq_range": [
             0,
             10
@@ -43,16 +43,16 @@
     },
     "directories": {
         "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting",
-        "extracted_data_directory": "/usr/share/data_for_ecephys/subject1_session1",
-        "kilosort_output_directory": "/usr/share/data_for_ecephys/subject1_session1",
-        "kilosort_output_tmp": "/usr/share/data_for_ecephys/kilosort_datatemp",
-        "npx_directory": "/usr/share/data_for_ecephys/subject1_session1"
+        "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+        "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+        "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+        "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
     },
     "ephys_params": {
-        "ap_band_file": "/usr/share/data_for_ecephys/subject1_session1/SC011_021919_g0/SC011_021919_g0_imec1/SC011_021919_g0_t0.imec1.ap.bin",
+        "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/SC011_021919_g0/SC011_021919_g0_imec1/SC011_021919_g0_t0.imec1.ap.bin",
         "bit_volts": 2.34375,
         "cluster_group_file_name": "cluster_group.tsv",
-        "lfp_band_file": "/usr/share/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+        "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
         "lfp_sample_rate": 2500,
         "num_channels": 385,
         "probe_type": "NP1",
@@ -64,10 +64,10 @@
         "vertical_site_spacing": 1e-05
     },
     "extract_from_npx_params": {
-        "npx_directory": "/usr/share/data_for_ecephys/subject1_session1",
+        "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
         "npx_extractor_executable": "C:\\Users\\svc_neuropix\\Documents\\GitHub\\npxextractor\\Release\\NpxExtractor.exe",
         "npx_extractor_repo": "C:\\Users\\svc_neuropix\\Documents\\GitHub\\npxextractor",
-        "settings_xml": "/usr/share/data_for_ecephys/subject1_session1"
+        "settings_xml": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
     },
     "kilosort_helper_params": {
         "kilosort2_params": {
@@ -80,7 +80,7 @@
             "chanMap": "'chanMap.mat'",
             "copy_fproc": 0,
             "finalSplits": 1,
-            "fproc": "'/usr/share/data_for_ecephys/kilosort_datatemp/temp_wh.dat'",
+            "fproc": "'/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp/temp_wh.dat'",
             "fshigh": 150,
             "gain": 2.34375,
             "labelGood": 1,
@@ -97,7 +97,7 @@
         "kilosort_repository": "/home/ubuntu/neuropixel/Kilosort-3.0",
         "kilosort_version": 2,
         "ks_make_copy": false,
-        "matlab_home_directory": "/usr/share/data_for_ecephys/kilosort_datatemp",
+        "matlab_home_directory": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
         "npy_matlab_repository": "/home/ubuntu/neuropixel/npy-matlab",
         "spikeGLX_data": true,
         "surface_channel_buffer": 15
@@ -111,7 +111,7 @@
     },
     "mean_waveform_params": {
         "cWaves_path": "/home/ubuntu/neuropixel/C_Waves-linux",
-        "mean_waveforms_file": "/usr/share/data_for_ecephys/subject1_session1/mean_waveforms.npy",
+        "mean_waveforms_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/mean_waveforms.npy",
         "num_epochs": 1,
         "pre_samples": 20,
         "samples_per_spike": 82,
@@ -157,6 +157,6 @@
         "toStream_sync_params": "SY=0,384,6,500"
     },
     "waveform_metrics": {
-        "waveform_metrics_file": "/usr/share/data_for_ecephys/subject1_session1/waveform_metrics.csv"
+        "waveform_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/waveform_metrics.csv"
     }
 }
