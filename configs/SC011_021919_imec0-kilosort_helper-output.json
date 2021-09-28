@@ -1,0 +1,85 @@
+{
+  "execution_time": 3028.0830364227295,
+  "mask_channels": [],
+  "nTot": 8150768,
+  "input_parameters": {
+    "common_files": {
+      "probe_json": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "settings_json": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
+    },
+    "directories": {
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp"
+    },
+    "kilosort_helper_params": {
+      "matlab_home_directory": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+      "kilosort2_params": {
+        "trange": "[0 Inf]",
+        "finalSplits": 1,
+        "nNeighbors": 32,
+        "useRAM": 0,
+        "LTseed": 1,
+        "sigmaMask": 30,
+        "GPU": 1,
+        "nSkipCov": 25,
+        "minfr_goodchannels": 0.1,
+        "saveRez": 1,
+        "nskip": 25,
+        "reorder": 1,
+        "minFR": 0.02,
+        "spkTh": -6,
+        "NT": "64*1024 + ops.ntbuff",
+        "AUCsplit": 0.9,
+        "fproc": "'/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp/temp_wh.dat'",
+        "CSBseed": 1,
+        "gain": 2.34375,
+        "KSver": "3.0",
+        "ThPre": 8,
+        "ntbuff": 64,
+        "scaleproc": 200,
+        "whiteningRange": 32,
+        "nPCs": 3,
+        "momentum": "[20 400]",
+        "fshigh": 150,
+        "nfilt_factor": 4,
+        "chanMap": "'chanMap.mat'",
+        "Th": "[10,4]",
+        "labelGood": 1,
+        "copy_fproc": 0,
+        "lam": 10,
+        "remDup": 0
+      },
+      "kilosort_version": 2,
+      "ks_make_copy": false,
+      "spikeGLX_data": true,
+      "surface_channel_buffer": 15,
+      "npy_matlab_repository": "/home/ubuntu/neuropixel/npy-matlab",
+      "kilosort_repository": "/home/ubuntu/neuropixel/Kilosort-3.0"
+    },
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-kilosort_helper-output.json",
+    "ephys_params": {
+      "reference_channels": [
+        191
+      ],
+      "probe_type": "NP1",
+      "vertical_site_spacing": 1e-05,
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/SC011_021919_g0_tcat.imec0.ap.bin",
+      "sample_rate": 29999.83625,
+      "num_channels": 301,
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "template_zero_padding": 21,
+      "cluster_group_file_name": "cluster_group.tsv",
+      "reorder_lfp_channels": true,
+      "bit_volts": 2.34375,
+      "lfp_sample_rate": 2500.0
+    },
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-input.json",
+    "log_level": "ERROR"
+  },
+  "kilosort_commit_date": "Mon, 05 Jul 2021 14:00",
+  "kilosort_commit_hash": "db3a3353d9a374ea2f71674bbe443be21986c82c",
+  "nTemplate": 264
+}
