@@ -2,7 +2,7 @@
     "catGT_helper_params": {
         "car_mode": "gblcar",
         "catGTPath": "/home/ubuntu/neuropixel/CatGT-linux",
-        "cmdStr": "-prb_fld -out_prb_fld -aphipass=300 -gfix=0.4,0.10,0.02 -tshift-SY=2,-1,6,500",
+        "cmdStr": "-prb_fld -out_prb_fld -gfix=0.4,0.10,0.02 -SY=2,-1,6,500",
         "gate_string": "0",
         "loccar_inner": 2,
         "loccar_outer": 8,
