@@ -1,5 +1,5 @@
-classdef CatGT < neuropixels.jobs.JobBase
-    %CatGT Summary of this class goes here
+classdef KiloSort < npxtoolkit.jobs.JobBase
+    %KiloSort Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -9,13 +9,13 @@ classdef CatGT < neuropixels.jobs.JobBase
     end
     
     methods
-        function obj = CatGT(job_info, input)
+        function obj = KiloSort(job_info, input)
             obj.job_info = job_info;
             obj.input = input;
         end
         
         function obj = execute(obj)
-            disp(obj.job_info);
+           disp(obj.job_info);
         end
     end
 end

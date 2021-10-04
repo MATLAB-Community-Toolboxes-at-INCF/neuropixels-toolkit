@@ -1,9 +1,9 @@
-import neuropixels.Utils
-import neuropixels.pipeline.Config
-import neuropixels.pipeline.Pipeline
-import neuropixels.stage.Stage
-import neuropixels.jobs.CatGT
-import neuropixels.jobs.KiloSort
+import npxtoolkit.Utils
+import npxtoolkit.pipeline.Config
+import npxtoolkit.pipeline.Pipeline
+import npxtoolkit.stage.Stage
+import npxtoolkit.jobs.CatGT
+import npxtoolkit.jobs.KiloSort
 
 %% Static Variables
 %PYENV_PATH = 'C:\ProgramData\Anaconda3\envs\spike_sorting\python.exe';
