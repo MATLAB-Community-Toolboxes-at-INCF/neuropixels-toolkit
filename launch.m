@@ -1,6 +1,7 @@
 import npxtoolkit.Utils
-import npxtoolkit.pipeline.Config
-import npxtoolkit.pipeline.Pipeline
+import npxtoolkit.assembly.Config
+import npxtoolkit.assembly.Assembly
+import npxtoolkit.session.Session
 import npxtoolkit.stage.Stage
 import npxtoolkit.jobs.CatGT
 import npxtoolkit.jobs.KiloSort
@@ -392,38 +393,42 @@ for curr = run_specs
 end
 
 
-% %% Pipeline Configuration
-% config = Config();
+%% Pipeline Configuration
+config = Config();
 
 
-% %% Pipeline Assemble
-% % define pipeline
-% pipeline = Pipeline();
-% % assemble pipeline by stages and jobs
-% % TODO - pipeline can be auto-assembled by RunSpec
-% % CatGT stage
-% stage_catgt = Stage('CatGT');
-% % job 0
-% job_catgt_0 = CatGT('CatGT probe 0', 'input probe 0');
-% stage_catgt.job_queue{end+1} = job_catgt_0;
-% % job 1
-% job_catgt_1 = CatGT('CatGT probe 1', 'input probe 1');
-% stage_catgt.job_queue{end+1} = job_catgt_1;
-% % append stage to pipeline
-% pipeline.stages{end+1} = stage_catgt;
+%% Pipeline Assemble
+% define pipeline
+assembly = Assembly('Assembly Info');
+% assemble pipeline by sessions, stages and jobs
+% TODO - pipeline can be auto-assembled by RunSpec
 
-% % KiloSort stage
-% stage_kilo = Stage('KiloSort');
-% % job 0
-% job_kilo_0 = KiloSort('KiloSort probe 0', 'input probe 0');
-% stage_kilo.job_queue{end+1} = job_kilo_0;
-% % job 1
-% job_kilo_1 = KiloSort('KiloSort probe 1', 'input probe 1');
-% stage_kilo.job_queue{end+1} = job_kilo_1;
-% % append stage to pipeline
-% pipeline.stages{end+1} = stage_kilo;
+% Session
+session_0 = Session('Session Info');
 
+% CatGT stage
+stage_catgt = Stage('CatGT');
+% job 0
+job_catgt_0 = CatGT('CatGT probe 0', 'input probe 0');
+stage_catgt.add_job(job_catgt_0);
+% job 1
+job_catgt_1 = CatGT('CatGT probe 1', 'input probe 1');
+stage_catgt.add_job(job_catgt_1);
+% append stage to session
+session_0.add_stage(stage_catgt);
 
-% %% Pipeline Execution
-% % pipeline.execute();
+% KiloSort stage
+stage_kilo = Stage('KiloSort');
+% job 0
+job_kilo_0 = KiloSort('KiloSort probe 0', 'input probe 0');
+stage_kilo.add_job(job_kilo_0);
+% job 1
+job_kilo_1 = KiloSort('KiloSort probe 1', 'input probe 1');
+stage_kilo.add_job(job_kilo_1);
+% append stage to session
+session_0.add_stage(stage_kilo);
+
+assembly.add_session(session_0)
+%% Execution
+assembly.par_execute();
 

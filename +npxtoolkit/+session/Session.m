@@ -14,6 +14,10 @@ classdef Session < handle
             obj.current_stage = -1;
             obj.stages = {};
         end
+
+        function obj = add_stage(stage)
+            obj.stages{end+1} = stage;
+        end
         
         function execute(obj)
             % stages have to run in sequence, because of result dependency
