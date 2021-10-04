@@ -3,22 +3,24 @@ classdef Pipeline < handle
     %   Detailed explanation goes here
     
     properties
-        current_stage
-        stages
+        pipeline_info
+        sessions
     end
     
     methods
-        function obj = Pipeline()
-            obj.current_stage = -1;
-            obj.stages = {};
+        function obj = Pipeline(pipeline_info)
+            obj.pipeline_info = pipeline_info
+            obj.sessions = {};
         end
         
-        function execute(obj)
-            % stages have to run in sequence, because of result dependency
-            for stage = obj.stages
-                curr = stage{:};
-                obj.current_stage = curr;
-                disp(obj.current_stage.stage_info);
+        function obj = add_session(session)
+
+        end
+
+        function par_execute(obj)
+            % sessions can run in parallel
+            for session = obj.sessions
+                curr = session{:};
                 curr.execute();
             end
         end

@@ -14,7 +14,7 @@ classdef CatGT < npxtoolkit.jobs.JobBase
             obj.input = input;
         end
         
-        function obj = execute(obj)
+        function execute(obj)
             disp(obj.job_info);
         end
     end
