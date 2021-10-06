@@ -1,4 +1,4 @@
-classdef KiloSort < src.jobs.JobBase
+classdef KiloSort < npxtoolkit.jobs.JobBase
     %KiloSort Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -14,7 +14,7 @@ classdef KiloSort < src.jobs.JobBase
             obj.input = input;
         end
         
-        function obj = execute(obj)
+        function execute(obj)
            disp(obj.job_info);
         end
     end

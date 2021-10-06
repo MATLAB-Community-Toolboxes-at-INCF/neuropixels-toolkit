@@ -1,13 +1,14 @@
-import npxtoolkit.assembly.Config
-import npxtoolkit.assembly.Assembly
-import npxtoolkit.session.Session
+import npxtoolkit.Utils
+import npxtoolkit.pipeline.Config
+import npxtoolkit.pipeline.Pipeline
 import npxtoolkit.stage.Stage
 import npxtoolkit.jobs.CatGT
 import npxtoolkit.jobs.KiloSort
 
 %% Static Variables
 %PYENV_PATH = 'C:\ProgramData\Anaconda3\envs\spike_sorting\python.exe';
-PYENV_PATH = '/home/ubuntu/anaconda3/envs/spike_sorting/bin/python';
+%PYENV_PATH = '/home/ubuntu/anaconda3/envs/spike_sorting/bin/python';
+PYENV_PATH = '/usr/local/bin/python';
 
 
 %% Pipeline ENV Configuration
@@ -54,14 +55,14 @@ ksTh_dict('thalamus') = '[10,4]';
 % -----------
 % External tool/module path
 % -----------
-ecephys_directory = '/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting';
+ecephys_directory = '/home/muser/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting';
 KS2ver = '3.0';
-kilosort_repository = strcat('/home/ubuntu/neuropixel/Kilosort-', KS2ver);
-npy_matlab_repository = '/home/ubuntu/neuropixel/npy-matlab';
-catGTPath = '/home/ubuntu/neuropixel/CatGT-linux';
-tPrime_path = '/home/ubuntu/neuropixel/TPrime-linux';
-cWaves_path = '/home/ubuntu/neuropixel/C_Waves-linux';
-kilosort_output_tmp = '/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp';
+kilosort_repository = strcat('/home/muser/neuropixel/Kilosort-', KS2ver);
+npy_matlab_repository = '/home/muser/neuropixel/npy-matlab';
+catGTPath = '/home/muser/neuropixel/CatGT-linux';
+tPrime_path = '/home/muser/neuropixel/TPrime-linux';
+cWaves_path = '/home/muser/neuropixel/C_Waves-linux';
+kilosort_output_tmp = '/home/muser/neuropixel/data_for_ecephys/kilosort_datatemp';
 
 % -----------
 % Input data
@@ -69,7 +70,7 @@ kilosort_output_tmp = '/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatem
 % path_sep = '\';
 path_sep = '/';
 % root_data_dir = 'C:\SFTP_Root\data_for_ecephys';
-root_data_dir = '/home/ubuntu/neuropixel/data_for_ecephys';
+root_data_dir = '/home/muser/neuropixel/data_for_ecephys';
 data_dir = strcat(root_data_dir, path_sep, 'subject1_session1');
 
 % Name for log file for this pipeline run. Log file will be saved in the
@@ -190,7 +191,7 @@ modules = {
 %};
 
 % json_directory = 'D:\ecephys_fork\json_files';
-json_directory = '/home/ubuntu/neuropixel/neuropixels-toolkit/configs';
+json_directory = '/home/muser/neuropixel/neuropixels-toolkit/configs';
 
 % -----------------------
 % -----------------------
@@ -398,36 +399,32 @@ config = Config();
 
 %% Pipeline Assemble
 % define pipeline
-assembly = Assembly('Assembly Info');
-% assemble pipeline by sessions, stages and jobs
+pipeline = Pipeline();
+% assemble pipeline by stages and jobs
 % TODO - pipeline can be auto-assembled by RunSpec
-
-% Session
-session_0 = Session('Session Info');
-
 % CatGT stage
 stage_catgt = Stage('CatGT');
 % job 0
 job_catgt_0 = CatGT('CatGT probe 0', 'input probe 0');
-stage_catgt.add_job(job_catgt_0);
+stage_catgt.job_queue{end+1} = job_catgt_0;
 % job 1
 job_catgt_1 = CatGT('CatGT probe 1', 'input probe 1');
-stage_catgt.add_job(job_catgt_1);
-% append stage to session
-session_0.add_stage(stage_catgt);
+stage_catgt.job_queue{end+1} = job_catgt_1;
+% append stage to pipeline
+pipeline.stages{end+1} = stage_catgt;
 
 % KiloSort stage
 stage_kilo = Stage('KiloSort');
 % job 0
 job_kilo_0 = KiloSort('KiloSort probe 0', 'input probe 0');
-stage_kilo.add_job(job_kilo_0);
+stage_kilo.job_queue{end+1} = job_kilo_0;
 % job 1
 job_kilo_1 = KiloSort('KiloSort probe 1', 'input probe 1');
-stage_kilo.add_job(job_kilo_1);
-% append stage to session
-session_0.add_stage(stage_kilo);
+stage_kilo.job_queue{end+1} = job_kilo_1;
+% append stage to pipeline
+pipeline.stages{end+1} = stage_kilo;
 
-assembly.add_session(session_0)
-%% Execution
-assembly.par_execute();
+
+%% Pipeline Execution
+% pipeline.execute();
 

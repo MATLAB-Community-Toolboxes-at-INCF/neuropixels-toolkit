@@ -1,0 +1,50 @@
+{
+  "execution_time": 233.04315280914307,
+  "input_parameters": {
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-mean_waveforms-output.json",
+    "log_level": "ERROR",
+    "directories": {
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2",
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting"
+    },
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-input.json",
+    "ephys_params": {
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "template_zero_padding": 21,
+      "cluster_group_file_name": "cluster_group.tsv",
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/SC011_021919_g0_tcat.imec0.ap.bin",
+      "lfp_sample_rate": 2500.0,
+      "reference_channels": [
+        191
+      ],
+      "vertical_site_spacing": 1e-05,
+      "num_channels": 301,
+      "sample_rate": 29999.83625,
+      "bit_volts": 2.34375,
+      "reorder_lfp_channels": true,
+      "probe_type": "NP1"
+    },
+    "cluster_metrics": {
+      "cluster_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2/metrics.csv"
+    },
+    "mean_waveform_params": {
+      "num_epochs": 1,
+      "cWaves_path": "/home/ubuntu/neuropixel/C_Waves-linux",
+      "snr_radius": 8,
+      "upsampling_factor": 2.4390243902439024,
+      "pre_samples": 20,
+      "spread_threshold": 0.12,
+      "use_C_Waves": true,
+      "mean_waveforms_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2/mean_waveforms.npy",
+      "site_range": 16,
+      "samples_per_spike": 82,
+      "spikes_per_epoch": 1000
+    },
+    "waveform_metrics": {
+      "waveform_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2/waveform_metrics.csv"
+    }
+  }
+}

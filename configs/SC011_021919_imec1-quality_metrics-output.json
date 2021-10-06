@@ -1,0 +1,50 @@
+{
+  "quality_metrics_output_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/metrics.csv",
+  "input_parameters": {
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec1-input.json",
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec1-quality_metrics-output.json",
+    "quality_metrics_params": {
+      "min_isi": 0.000166,
+      "max_spikes_for_unit": 500,
+      "max_spikes_for_nn": 10000,
+      "drift_metrics_interval_s": 51.0,
+      "include_pcs": false,
+      "max_radius_um": 68,
+      "n_neighbors": 4,
+      "isi_threshold": 0.001,
+      "n_silhouette": 10000,
+      "drift_metrics_min_spikes_per_interval": 10
+    },
+    "directories": {
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2",
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp"
+    },
+    "cluster_metrics": {
+      "cluster_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/metrics.csv"
+    },
+    "log_level": "ERROR",
+    "waveform_metrics": {
+      "waveform_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/waveform_metrics.csv"
+    },
+    "ephys_params": {
+      "sample_rate": 29999.82375,
+      "bit_volts": 2.34375,
+      "probe_type": "NP1",
+      "reorder_lfp_channels": true,
+      "vertical_site_spacing": 1e-05,
+      "template_zero_padding": 21,
+      "cluster_group_file_name": "cluster_group.tsv",
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/SC011_021919_g0_tcat.imec1.ap.bin",
+      "lfp_sample_rate": 2500.0,
+      "num_channels": 385,
+      "reference_channels": [
+        191
+      ]
+    }
+  },
+  "execution_time": 100.75876784324646
+}

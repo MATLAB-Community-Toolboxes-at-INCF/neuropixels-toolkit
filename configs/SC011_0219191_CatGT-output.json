@@ -1,0 +1,43 @@
+{
+  "execution_time": 0.6039817333221436,
+  "input_parameters": {
+    "ephys_params": {
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/SC011_021919_g0/SC011_021919_g0_imec1/SC011_021919_g0_t0.imec1.ap.bin",
+      "reorder_lfp_channels": true,
+      "sample_rate": 29999.82375,
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "vertical_site_spacing": 1e-05,
+      "template_zero_padding": 21,
+      "reference_channels": [
+        191
+      ],
+      "cluster_group_file_name": "cluster_group.tsv",
+      "lfp_sample_rate": 2500.0,
+      "probe_type": "NP1",
+      "num_channels": 385,
+      "bit_volts": 2.34375
+    },
+    "directories": {
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
+    },
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_0219191_CatGT-output.json",
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_0219191_CatGT-input.json",
+    "catGT_helper_params": {
+      "gate_string": "0",
+      "stream_string": "-ap",
+      "probe_string": "1",
+      "cmdStr": "-prb_fld -out_prb_fld -gfix=0.4,0.10,0.02 -SY=1,-1,6,500",
+      "car_mode": "gblcar",
+      "trigger_string": "0,0",
+      "loccar_outer": 8,
+      "loccar_inner": 2,
+      "run_name": "SC011_021919",
+      "catGTPath": "/home/ubuntu/neuropixel/CatGT-linux"
+    },
+    "log_level": "ERROR"
+  }
+}

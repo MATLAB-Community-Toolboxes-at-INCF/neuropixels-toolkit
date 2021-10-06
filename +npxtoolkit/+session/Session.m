@@ -1,16 +1,22 @@
-classdef Pipeline < handle
-    %Pipeline Summary of this class goes here
+classdef Session < handle
+    %Session Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
+        session_info
         current_stage
         stages
     end
     
     methods
-        function obj = Pipeline()
+        function obj = Session(session_info)
+            obj.session_info = session_info;
             obj.current_stage = -1;
             obj.stages = {};
+        end
+
+        function obj = add_stage(stage)
+            obj.stages{end+1} = stage;
         end
         
         function execute(obj)
@@ -24,4 +30,3 @@ classdef Pipeline < handle
         end
     end
 end
-

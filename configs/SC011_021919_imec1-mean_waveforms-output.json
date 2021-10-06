@@ -1,0 +1,50 @@
+{
+  "execution_time": 479.02371168136597,
+  "input_parameters": {
+    "cluster_metrics": {
+      "cluster_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/metrics.csv"
+    },
+    "directories": {
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1"
+    },
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec1-input.json",
+    "waveform_metrics": {
+      "waveform_metrics_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/waveform_metrics.csv"
+    },
+    "mean_waveform_params": {
+      "pre_samples": 20,
+      "samples_per_spike": 82,
+      "mean_waveforms_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/imec1_ks2/mean_waveforms.npy",
+      "spread_threshold": 0.12,
+      "spikes_per_epoch": 1000,
+      "use_C_Waves": true,
+      "site_range": 16,
+      "upsampling_factor": 2.4390243902439024,
+      "num_epochs": 1,
+      "snr_radius": 8,
+      "cWaves_path": "/home/ubuntu/neuropixel/C_Waves-linux"
+    },
+    "ephys_params": {
+      "bit_volts": 2.34375,
+      "sample_rate": 29999.82375,
+      "num_channels": 385,
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec1/SC011_021919_g0_tcat.imec1.ap.bin",
+      "reorder_lfp_channels": true,
+      "template_zero_padding": 21,
+      "lfp_sample_rate": 2500.0,
+      "cluster_group_file_name": "cluster_group.tsv",
+      "vertical_site_spacing": 1e-05,
+      "reference_channels": [
+        191
+      ],
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "probe_type": "NP1"
+    },
+    "log_level": "ERROR",
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec1-mean_waveforms-output.json"
+  }
+}
