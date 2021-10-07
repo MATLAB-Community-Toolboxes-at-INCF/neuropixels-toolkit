@@ -92,10 +92,10 @@ npx_directory = data_dir;
 %   brain regions, list of strings, one per probe, to set region specific params
 %           these strings must match a key in the param dictionaries above.
 
-% run_specs = {									
+% run_specs = {                                    
 %     {'SC024_092319_NP1.0_Midbrain', '0', '0,9', '0,1', ["cortex" "cortex"]}
 % };
-run_specs = {									
+run_specs = {                                    
     {'SC011_021919', '0', '0,0', '0,1,2', {'cortex' 'thalamus' 'default'}}
 };
 
@@ -255,7 +255,7 @@ for curr = run_specs
             catGT_stream_string = '-ap';
             extract_string = sync_extract;
         end
-	
+    
         % build name of first trial to be concatenated/processed;
         % allows reaidng of the metadata
         run_str = strcat(spec{1}, '_g', spec{2}); 
@@ -297,13 +297,13 @@ for curr = run_specs
                 'extracted_data_directory', catGT_dest...
             )...
         );
-				
-	% create json files for the other modules
-	session_ids{i} = strcat(spec{1},'_imec', prb);
+                
+    % create json files for the other modules
+    session_ids{i} = strcat(spec{1},'_imec', prb);
 
-	module_input_json{i} = fullfile(json_directory, strcat(session_ids{i}, '-input.json'));
+    module_input_json{i} = fullfile(json_directory, strcat(session_ids{i}, '-input.json'));
 
-	% location of the binary created by CatGT, using -out_prb_fld
+    % location of the binary created by CatGT, using -out_prb_fld
     run_str = strcat(spec{1}, '_g', spec{2});
     run_folder = strcat('catgt_', run_str);
     prb_folder = strcat(run_str, '_imec', prb);
@@ -311,28 +311,28 @@ for curr = run_specs
     fileName = strcat(run_str, '_tcat.imec', prb, '.ap.bin');
     continuous_file = fullfile(data_directory{i}, fileName);
 
-	outputName = strcat('imec', prb, '_ks2');
+    outputName = strcat('imec', prb, '_ks2');
 
-	% kilosort_postprocessing and noise_templates moduules alter the files
+    % kilosort_postprocessing and noise_templates moduules alter the files
     % that are input to phy. If using these modules, keep a copy of the
     % original phy output
     if any(strcmp('kilosort_postprocessing', modules)) || any(strcmp('noise_templates', modules))
         ks_make_copy = true;
     else
         ks_make_copy = false;
-	end
+    end
 
-	kilosort_output_dir = fullfile(data_directory{i}, outputName);
-	
-	disp(data_directory{i});
-	disp(continuous_file);
+    kilosort_output_dir = fullfile(data_directory{i}, outputName);
+    
+    disp(data_directory{i});
+    disp(continuous_file);
 
-	% get region specific parameters
-	ks_Th = ksTh_dict(spec{5}{i});
+    % get region specific parameters
+    ks_Th = ksTh_dict(spec{5}{i});
     refPerMS = refPerMS_dict(spec{5}{i});
-	disp(strcat('ks_Th: ', ks_Th, ' ,refPerMS: ', string(refPerMS)));
+    disp(strcat('ks_Th: ', ks_Th, ' ,refPerMS: ', string(refPerMS)));
 
-	info = py.py_modules.caller.createInputJson(...
+    info = py.py_modules.caller.createInputJson(...
         pyargs(...
             'output_file', module_input_json{i},...
             'ecephys_directory', ecephys_directory,...
@@ -370,7 +370,7 @@ for curr = run_specs
         )...
     );
 
-	% copy json file to data directory as record of the input parameters 
+    % copy json file to data directory as record of the input parameters 
     end
     
     % loop over probes for processing.
@@ -386,7 +386,7 @@ for curr = run_specs
             modules,...
             module_input_json{i},...
             logFullPath...
-	    );
+        );
     end
 end
 
