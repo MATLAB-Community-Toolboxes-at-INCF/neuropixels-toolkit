@@ -3,15 +3,15 @@ classdef Session < handle
     %   Detailed explanation goes here
     
     properties
-        session_info
-        current_stage
+        sessionInfo
+        currentStage
         stages
     end
     
     methods
-        function obj = Session(session_info)
-            obj.session_info = session_info;
-            obj.current_stage = -1;
+        function obj = Session(sessionInfo)
+            obj.sessionInfo = sessionInfo;
+            obj.currentStage = -1;
             obj.stages = {};
         end
 
@@ -23,8 +23,8 @@ classdef Session < handle
             % stages have to run in sequence, because of result dependency
             for stage = obj.stages
                 curr = stage{:};
-                obj.current_stage = curr;
-                disp(obj.current_stage.stage_info);
+                obj.currentStage = curr;
+                disp(obj.currentStage.stageInfo);
                 curr.execute();
             end
         end

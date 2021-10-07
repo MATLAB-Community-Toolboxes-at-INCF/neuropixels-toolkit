@@ -3,19 +3,19 @@ classdef CatGT < npxtoolkit.jobs.JobBase
     %   Detailed explanation goes here
     
     properties
-        job_info
+        jobInfo
         input
         output
     end
     
     methods
-        function obj = CatGT(job_info, input)
-            obj.job_info = job_info;
+        function obj = CatGT(jobInfo, input)
+            obj.jobInfo = jobInfo;
             obj.input = input;
         end
         
         function execute(obj)
-            disp(obj.job_info);
+            disp(obj.jobInfo);
         end
     end
 end

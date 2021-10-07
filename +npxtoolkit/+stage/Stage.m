@@ -3,24 +3,24 @@ classdef Stage < handle
     %   Detailed explanation goes here
     
     properties
-        stage_info
-        current_job
-        job_queue
+        stageInfo
+        currentJob
+        jobQueue
     end
     
     methods
-        function obj = Stage(stage_info)
-            obj.stage_info = stage_info;
-            obj.job_queue = {};
+        function obj = Stage(stageInfo)
+            obj.stageInfo = stageInfo;
+            obj.jobQueue = {};
         end
 
         function obj = add_job(job)
-            obj.job_queue{end+1} = job;
+            obj.jobQueue{end+1} = job;
         end
 
         function par_execute(obj)
             % TODO - jobs can run in parallel
-            for job = obj.job_queue
+            for job = obj.jobQueue
                 curr = job{:};
                 curr.execute();
             end

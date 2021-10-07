@@ -3,13 +3,13 @@ classdef Assembly < handle
     %   Detailed explanation goes here
     
     properties
-        assembly_info
+        assemblyInfo
         sessions
     end
     
     methods
-        function obj = Assembly(assembly_info)
-            obj.assembly_info = assembly_info
+        function obj = Assembly(assemblyInfo)
+            obj.assemblyInfo = assemblyInfo
             obj.sessions = {};
         end
         

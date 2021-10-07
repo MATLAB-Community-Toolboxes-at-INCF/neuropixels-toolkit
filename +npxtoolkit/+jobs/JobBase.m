@@ -3,7 +3,7 @@ classdef (Abstract) JobBase < handle
     %   Detailed explanation goes here
     
     properties (Abstract)
-        job_info
+        jobInfo
         input
         output
     end
