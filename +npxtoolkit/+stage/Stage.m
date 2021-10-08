@@ -14,7 +14,7 @@ classdef Stage < handle
             obj.taskQueue = {};
         end
 
-        function obj = addJob(task)
+        function obj = addTask(task)
             obj.taskQueue{end+1} = task;
         end
 
