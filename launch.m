@@ -1,9 +1,9 @@
-import npxtoolkit.assembly.Config
-import npxtoolkit.assembly.Assembly
+import npxtoolkit.session.Config
 import npxtoolkit.session.Session
+import npxtoolkit.pipeline.Pipeline
 import npxtoolkit.stage.Stage
-import npxtoolkit.jobs.CatGT
-import npxtoolkit.jobs.KiloSort
+import npxtoolkit.tasks.CatGT
+import npxtoolkit.tasks.KiloSort
 
 %% Static Variables
 %PYENV_PATH = 'C:\ProgramData\Anaconda3\envs\spike_sorting\python.exe';
@@ -391,42 +391,41 @@ for curr = run_specs
 end
 
 
-%% Pipeline Configuration
+%% Processing Session Configuration
 config = Config();
 
+%% Processing Session
+% define session
+session = Session('Session Info');
+% init session by pipelines, stages and jobs
+% TODO - session can be auto-assembled by RunSpec
 
-%% Pipeline Assemble
-% define pipeline
-assembly = Assembly('Assembly Info');
-% assemble pipeline by sessions, stages and jobs
-% TODO - pipeline can be auto-assembled by RunSpec
-
-% Session
-session0 = Session('Session Info');
+% Pipeline
+pipeline0 = Pipeline('Pipeline Info');
 
 % CatGT stage
 stageCatgt = Stage('CatGT');
-% job 0
-jobCatgt0 = CatGT('CatGT probe 0', 'input probe 0');
-stageCatgt.addJob(jobCatgt0);
-% job 1
-jobCatgt1 = CatGT('CatGT probe 1', 'input probe 1');
-stageCatgt.addJob(jobCatgt1);
-% append stage to session
-session0.addStage(stageCatgt);
+% task 0
+taskCatgt0 = CatGT('CatGT probe 0', 'input probe 0');
+stageCatgt.addTask(taskCatgt0);
+% task 1
+taskCatgt1 = CatGT('CatGT probe 1', 'input probe 1');
+stageCatgt.addTask(taskCatgt1);
+% append stage to pipeline
+pipeline0.addStage(stageCatgt);
 
 % KiloSort stage
 stageKilo = Stage('KiloSort');
-% job 0
-jobKilo0 = KiloSort('KiloSort probe 0', 'input probe 0');
-stageKilo.addJob(jobKilo0);
-% job 1
-jobKilo1 = KiloSort('KiloSort probe 1', 'input probe 1');
-stageKilo.addJob(jobKilo1);
-% append stage to session
-session0.addStage(stageKilo);
+% task 0
+taskKilo0 = KiloSort('KiloSort probe 0', 'input probe 0');
+stageKilo.addTask(jobKilo0);
+% task 1
+taskKilo1 = KiloSort('KiloSort probe 1', 'input probe 1');
+stageKilo.addTask(taskKilo1);
+% append stage to pipeline
+pipeline0.addStage(stageKilo);
 
-assembly.addSession(session0)
+session.addPipeline(pipeline0)
 %% Execution
-assembly.parExecute();
+session.parExecute();
 

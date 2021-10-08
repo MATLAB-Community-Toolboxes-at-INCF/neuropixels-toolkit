@@ -4,29 +4,37 @@ classdef Session < handle
     
     properties
         sessionInfo
-        currentStage
-        stages
+        pipelines
     end
     
     methods
         function obj = Session(sessionInfo)
-            obj.sessionInfo = sessionInfo;
-            obj.currentStage = -1;
-            obj.stages = {};
-        end
-
-        function obj = add_stage(stage)
-            obj.stages{end+1} = stage;
+            obj.sessionInfo = sessionInfo
+            obj.pipelines = {};
         end
         
-        function execute(obj)
-            % stages have to run in sequence, because of result dependency
-            for stage = obj.stages
-                curr = stage{:};
-                obj.currentStage = curr;
-                disp(obj.currentStage.stageInfo);
+        function obj = addPipeline(pipeline)
+            obj.pipelines{end+1} = pipeline;
+        end
+
+        function parExecute(obj)
+            % sessions can run in parallel
+            for pipeline = obj.pipelines
+                curr = pipeline{:};
                 curr.execute();
             end
         end
     end
+
+    methods(Static)
+        function config = loadJson(fpath)
+            fid = fopen(fpath); 
+            raw = fread(fid,inf); 
+            config = char(raw'); 
+            fclose(fid);
+            disp(config) % debug
+            config = jsondecode(config);
+        end
+    end
 end
+

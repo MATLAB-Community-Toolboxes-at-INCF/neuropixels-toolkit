@@ -1,21 +1,21 @@
-classdef CatGT < npxtoolkit.jobs.JobBase
+classdef CatGT < npxtoolkit.tasks.TaskBase
     %CatGT Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        jobInfo
+        taskInfo
         input
         output
     end
     
     methods
-        function obj = CatGT(jobInfo, input)
-            obj.jobInfo = jobInfo;
+        function obj = CatGT(taskInfo, input)
+            obj.taskInfo = taskInfo;
             obj.input = input;
         end
         
         function execute(obj)
-            disp(obj.jobInfo);
+            disp(obj.taskInfo);
         end
     end
 end

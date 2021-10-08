@@ -4,24 +4,24 @@ classdef Stage < handle
     
     properties
         stageInfo
-        currentJob
-        jobQueue
+        currentTask
+        taskQueue
     end
     
     methods
         function obj = Stage(stageInfo)
             obj.stageInfo = stageInfo;
-            obj.jobQueue = {};
+            obj.taskQueue = {};
         end
 
-        function obj = add_job(job)
-            obj.jobQueue{end+1} = job;
+        function obj = addJob(task)
+            obj.taskQueue{end+1} = task;
         end
 
-        function par_execute(obj)
-            % TODO - jobs can run in parallel
-            for job = obj.jobQueue
-                curr = job{:};
+        function parExecute(obj)
+            % TODO - tasks can run in parallel
+            for task = obj.taskQueue
+                curr = task{:};
                 curr.execute();
             end
         end
