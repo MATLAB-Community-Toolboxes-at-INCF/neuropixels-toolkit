@@ -13,7 +13,7 @@ classdef Session < handle
             obj.pipelines = {};
         end
         
-        function obj = addPipeline(pipeline)
+        function obj = addPipeline(obj, pipeline)
             obj.pipelines{end+1} = pipeline;
         end
 
@@ -21,6 +21,7 @@ classdef Session < handle
             % sessions can run in parallel
             for pipeline = obj.pipelines
                 curr = pipeline{:};
+                disp(strcat("Current Pipeline: ", curr.pipelineInfo))
                 curr.execute();
             end
         end

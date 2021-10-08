@@ -15,7 +15,7 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
         end
         
         function execute(obj)
-           disp(obj.taskInfo);
+            disp(strcat("Running task: ", obj.taskInfo))
         end
     end
 end

@@ -15,7 +15,7 @@ classdef Pipeline < handle
             obj.stages = {};
         end
 
-        function obj = addStage(stage)
+        function obj = addStage(obj, stage)
             obj.stages{end+1} = stage;
         end
         
@@ -24,8 +24,8 @@ classdef Pipeline < handle
             for stage = obj.stages
                 curr = stage{:};
                 obj.currentStage = curr;
-                disp(obj.currentStage.stageInfo);
-                curr.execute();
+                disp(strcat("Current Stage: ", curr.stageInfo))
+                curr.parExecute();
             end
         end
     end

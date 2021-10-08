@@ -32,7 +32,7 @@ pipeline0.addStage(stageCatgt);
 stageKilo = Stage('KiloSort');
 % task 0
 taskKilo0 = KiloSort('KiloSort probe 0', 'input probe 0');
-stageKilo.addTask(jobKilo0);
+stageKilo.addTask(taskKilo0);
 % task 1
 taskKilo1 = KiloSort('KiloSort probe 1', 'input probe 1');
 stageKilo.addTask(taskKilo1);

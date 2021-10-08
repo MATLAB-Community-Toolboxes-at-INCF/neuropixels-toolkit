@@ -14,7 +14,7 @@ classdef Stage < handle
             obj.taskQueue = {};
         end
 
-        function obj = addTask(task)
+        function obj = addTask(obj, task)
             obj.taskQueue{end+1} = task;
         end
 
@@ -22,6 +22,7 @@ classdef Stage < handle
             % TODO - tasks can run in parallel
             for task = obj.taskQueue
                 curr = task{:};
+                disp(strcat("Current Task: ", curr.taskInfo))
                 curr.execute();
             end
         end
