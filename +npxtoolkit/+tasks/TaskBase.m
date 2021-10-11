@@ -1,9 +1,9 @@
-classdef (Abstract) JobBase < handle
+classdef (Abstract) TaskBase < handle
     %JOBBASE Summary of this class goes here
     %   Detailed explanation goes here
     
     properties (Abstract)
-        job_info
+        taskInfo
         input
         output
     end

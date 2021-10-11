@@ -1,21 +1,21 @@
-classdef KiloSort < npxtoolkit.jobs.JobBase
+classdef KiloSort < npxtoolkit.tasks.TaskBase
     %KiloSort Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        job_info
+        taskInfo
         input
         output
     end
     
     methods
-        function obj = KiloSort(job_info, input)
-            obj.job_info = job_info;
+        function obj = KiloSort(taskInfo, input)
+            obj.taskInfo = taskInfo;
             obj.input = input;
         end
         
         function execute(obj)
-           disp(obj.job_info);
+            disp(strcat("Running task: ", obj.taskInfo))
         end
     end
 end

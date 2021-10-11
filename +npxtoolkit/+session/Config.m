@@ -3,11 +3,11 @@ classdef Config < handle
     %   Detailed explanation goes here
     
     properties
-        run_name
-        gate_index
-        concat_trigger
+        runName
+        gateIndex
+        concatTrigger
         probes
-        brain_regions
+        brainRegions
     end
     
     methods
