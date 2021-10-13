@@ -1,0 +1,54 @@
+{
+    "refPerMSDict": {
+        "default": 2.0,
+        "cortex": 2.0,
+        "medulla": 1.5,
+        "thalamus": 1.0
+    },
+    "ksThDict": {
+        "default": "[10,4]",
+        "cortex": "[10,4]",
+        "medulla": "[10,4]",
+        "thalamus": "[10,4]"
+    },
+    
+    "ecephysDir": "/home/ubuntu/neuropixel/ecephys_    spike_sorting/ecephys_spike_sorting",
+    "KS2ver": "3.0",
+    "kilosortRepo": "/home/ubuntu/neuropixel/Kilosort-",
+    "npyMatlabRepo": "/home/ubuntu/neuropixel/npy-matlab",
+    "catGTPath": "/home/ubuntu/neuropixel/CatGT-linux",
+    "tPrimePath": "/home/ubuntu/neuropixel/TPrime-linux",
+    "cWavesPath": "/home/ubuntu/neuropixel/C_Waves-linux",
+    "kilosortOutputTmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+
+    "rootDataDir": "/home/ubuntu/neuropixel/data_for_ecephys",
+    "dataDir": "",
+    "npxDir": "",
+    "logName": "SC024_log.csv",
+
+    "runSpecs": "",
+    "runName": "SC011_021919",
+    "gateIdx": "0",
+    "triggers": "0,0",
+    "probes": "0",
+    "brainRegions": ["cortex", "thalamus", "default"],
+
+    "catGTDest": "",
+    "runCatGT": "false",
+    "carMode": "gblcar",
+    "loccarMin": 40,
+    "loccarMax": 160,
+    "catGTCmdStr": "-prb_fld -out_prb_fld -gfix=0.4,0.10,0.02",
+    "niPresent": "true",
+    "niExtractStr": " -XA=0,1,3,500 -iXA=1,3,3,0  -XD=-1,1,50 -XD=-1,2,1.7 -XD=-1,3,5 -iXD=-1,3,5",
+
+    "ksRemDup": 0,
+    "ksSaveRez": 1,
+    "ksCopyFporc": 0,
+    "ksTemplateRadiusUm": 163,
+    "ksWhiteningRadiusUm": 163,
+    "ksMinfrGoodChannels": 0.1,
+
+    "cWavesSnrUm": 160,
+    "EventExParamStr": "XD=-1,1,50"
+}

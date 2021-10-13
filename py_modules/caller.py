@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 
 # pipeline modules are using relative importing
 # so using sys.path hack here
@@ -15,8 +16,7 @@ from ecephys_spike_sorting.scripts.helpers.SpikeGLX_utils import ParseProbeStr, 
 from ecephys_spike_sorting.scripts.helpers.run_one_probe import runOne
 from ecephys_spike_sorting.scripts.helpers.log_from_json import writeHeader
 
-def call_helper():
-    """
-        TODO - Calling ecephys_spike_sorting.scripts.helpers.*
-    """
-    print("call_helper")
+def call_python(params):
+    command = sys.executable + ' ' + params
+    subprocess.check_call(command.split(' '))
+

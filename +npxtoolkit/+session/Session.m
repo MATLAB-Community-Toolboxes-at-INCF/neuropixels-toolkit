@@ -33,7 +33,6 @@ classdef Session < handle
             raw = fread(fid,inf); 
             config = char(raw'); 
             fclose(fid);
-            disp(config) % debug
             config = jsondecode(config);
         end
     end

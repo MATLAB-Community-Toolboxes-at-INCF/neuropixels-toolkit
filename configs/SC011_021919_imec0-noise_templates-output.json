@@ -1,54 +1,54 @@
 {
   "input_parameters": {
     "log_level": "ERROR",
+    "noise_waveform_params": {
+      "wavelet_index": 2,
+      "peak_channel_range": 24,
+      "use_random_forest": false,
+      "max_spread_threshold": 25,
+      "smoothed_template_amplitude_threshold": 0.2,
+      "multiprocessing_worker_count": 10,
+      "mid_spread_threshold": 16,
+      "peak_prominence_thresh": 0.2,
+      "template_shape_channel_range": 12,
+      "smoothed_template_filter_width": 2,
+      "classifier_path": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting/modules/noise_templates/rf_classifier.pkl",
+      "max_wavelet_peak_loc": 25,
+      "channel_amplitude_thresh": 0.25,
+      "min_temporal_peak_location": 10,
+      "min_wavelet_peak_height": 0.0,
+      "max_temporal_peak_location": 30,
+      "peak_height_thresh": 0.2,
+      "min_wavelet_peak_loc": 15,
+      "peak_locs_std_thresh": 3.5,
+      "template_amplitude_threshold": 0.2,
+      "min_spread_threshold": 2
+    },
+    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-input.json",
+    "directories": {
+      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
+      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
+      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
+      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2"
+    },
+    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-noise_templates-output.json",
     "ephys_params": {
-      "reorder_lfp_channels": true,
-      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "num_channels": 301,
       "lfp_sample_rate": 2500.0,
       "vertical_site_spacing": 1e-05,
+      "cluster_group_file_name": "cluster_group.tsv",
+      "template_zero_padding": 21,
+      "sample_rate": 29999.83625,
+      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/SC011_021919_g0_tcat.imec0.ap.bin",
+      "bit_volts": 2.34375,
+      "lfp_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/continuous/Neuropix-PXI-100.1/continuous.dat",
+      "reorder_lfp_channels": true,
       "reference_channels": [
         191
       ],
-      "template_zero_padding": 21,
-      "probe_type": "NP1",
-      "ap_band_file": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/SC011_021919_g0_tcat.imec0.ap.bin",
-      "cluster_group_file_name": "cluster_group.tsv",
-      "bit_volts": 2.34375,
-      "sample_rate": 29999.83625,
-      "num_channels": 301
-    },
-    "output_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-noise_templates-output.json",
-    "input_json": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs/SC011_021919_imec0-input.json",
-    "noise_waveform_params": {
-      "smoothed_template_amplitude_threshold": 0.2,
-      "min_temporal_peak_location": 10,
-      "smoothed_template_filter_width": 2,
-      "multiprocessing_worker_count": 10,
-      "max_temporal_peak_location": 30,
-      "use_random_forest": false,
-      "min_spread_threshold": 2,
-      "max_spread_threshold": 25,
-      "peak_locs_std_thresh": 3.5,
-      "min_wavelet_peak_height": 0.0,
-      "wavelet_index": 2,
-      "peak_prominence_thresh": 0.2,
-      "mid_spread_threshold": 16,
-      "max_wavelet_peak_loc": 25,
-      "min_wavelet_peak_loc": 15,
-      "peak_channel_range": 24,
-      "template_amplitude_threshold": 0.2,
-      "classifier_path": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting/modules/noise_templates/rf_classifier.pkl",
-      "channel_amplitude_thresh": 0.25,
-      "peak_height_thresh": 0.2,
-      "template_shape_channel_range": 12
-    },
-    "directories": {
-      "npx_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
-      "kilosort_output_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1/catgt_SC011_021919_g0/SC011_021919_g0_imec0/imec0_ks2",
-      "extracted_data_directory": "/home/ubuntu/neuropixel/data_for_ecephys/subject1_session1",
-      "ecephys_directory": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
-      "kilosort_output_tmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp"
+      "probe_type": "NP1"
     }
   },
-  "execution_time": 43.27536678314209
+  "execution_time": 48.537822246551514
 }
