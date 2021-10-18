@@ -1,11 +1,11 @@
-classdef (Abstract) TaskBase < handle
+classdef (Abstract) TaskBase < matlab.mixin.Heterogeneous & handle
     %JOBBASE Summary of this class goes here
     %   Detailed explanation goes here
     
     properties (Abstract)
-        taskInfo
-        input
-        output
+        TaskInfo
+        Input
+        Output
     end
     
     methods (Abstract)

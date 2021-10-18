@@ -3,25 +3,24 @@ classdef Session < handle
     %   Detailed explanation goes here
     
     properties
-        sessionInfo
-        pipelines
+        SessionInfo
+        Pipelines
     end
     
     methods
         function obj = Session(sessionInfo)
-            obj.sessionInfo = sessionInfo
-            obj.pipelines = {};
+            obj.SessionInfo = sessionInfo
+            obj.Pipelines = [];
         end
         
         function obj = addPipeline(obj, pipeline)
-            obj.pipelines{end+1} = pipeline;
+            obj.Pipelines = [obj.Pipelines, pipeline];
         end
 
         function parExecute(obj)
             % sessions can run in parallel
-            for pipeline = obj.pipelines
-                curr = pipeline{:};
-                disp(strcat("Current Pipeline: ", curr.pipelineInfo))
+            for curr = obj.Pipelines
+                disp(strcat("Current Pipeline: ", curr.PipelineInfo))
                 curr.execute();
             end
         end

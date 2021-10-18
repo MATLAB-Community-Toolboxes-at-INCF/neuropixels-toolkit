@@ -3,19 +3,19 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
     %   Detailed explanation goes here
     
     properties
-        taskInfo
-        input
-        output
+        TaskInfo
+        Input
+        Output
     end
     
     methods
         function obj = KiloSort(taskInfo, input)
-            obj.taskInfo = taskInfo;
-            obj.input = input;
+            obj.TaskInfo = taskInfo;
+            obj.Input = input;
         end
         
         function execute(obj)
-            disp(strcat("Running task: ", obj.taskInfo))
+            disp(strcat("Running task: ", obj.TaskInfo))
         end
     end
 end

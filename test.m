@@ -27,7 +27,7 @@ session = Session('Session Info');
 % TODO - session can be auto-assembled by RunSpec
 
 % Pipeline
-pipeline0 = Pipeline('Pipeline Info');
+pipeline0 = Pipeline('Pipeline0 Info');
 
 % CatGT stage
 stageCatgt = Stage('CatGT');
@@ -52,5 +52,8 @@ stageKilo.addTask(taskKilo1);
 pipeline0.addStage(stageKilo);
 
 session.addPipeline(pipeline0);
+
+pipeline1 = Pipeline('Pipeline1 Info');
+session.addPipeline(pipeline1);
 %% Execution
 session.parExecute();

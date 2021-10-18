@@ -1,28 +1,27 @@
-classdef Stage < handle
+classdef Stage < matlab.mixin.Heterogeneous & handle
     %Stage Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        stageInfo
-        currentTask
-        taskQueue
+        StageInfo
+        CurrentTask
+        TaskQueue
     end
     
     methods
         function obj = Stage(stageInfo)
-            obj.stageInfo = stageInfo;
-            obj.taskQueue = {};
+            obj.StageInfo = stageInfo;
+            obj.TaskQueue = [];
         end
 
         function obj = addTask(obj, task)
-            obj.taskQueue{end+1} = task;
+            obj.TaskQueue = [obj.TaskQueue, task];
         end
 
         function parExecute(obj)
             % TODO - tasks can run in parallel
-            for task = obj.taskQueue
-                curr = task{:};
-                disp(strcat("Current Task: ", curr.taskInfo))
+            for curr = obj.TaskQueue
+                disp(strcat("Current Task: ", curr.TaskInfo))
                 curr.execute();
             end
         end

@@ -12,7 +12,7 @@
         "thalamus": "[10,4]"
     },
     
-    "ecephysDir": "/home/ubuntu/neuropixel/ecephys_    spike_sorting/ecephys_spike_sorting",
+    "ecephysDir": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
     "KS2ver": "3.0",
     "kilosortRepo": "/home/ubuntu/neuropixel/Kilosort-",
     "npyMatlabRepo": "/home/ubuntu/neuropixel/npy-matlab",

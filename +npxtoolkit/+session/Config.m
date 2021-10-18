@@ -5,66 +5,66 @@ classdef Config < handle
     properties
         %User Input
         % brain region specific params
-        refPerMSDict = containers.Map()
+        RefPerMSDict = containers.Map()
         % threshold values appropriate for KS2, KS2.5
-        ksThDict = containers.Map()
+        KsThDict = containers.Map()
         
         %External tool/module path
-        ecephysDir
+        EcephysDir
         KS2ver
-        kilosortRepo
-        npyMatlabRepo
-        catGTPath
-        tPrimePath
-        cWavesPath
-        kilosortOutputTmp
+        KilosortRepo
+        NpyMatlabRepo
+        CatGTPath
+        TPrimePath
+        CWavesPath
+        KilosortOutputTmp
         
         %Input Data
-        rootDataDir
-        dataDir
-        npxDir
+        RootDataDir
+        DataDir
+        NpxDir
         % Name for log file for this session run
-        logName
+        LogName
         % run_specs
-        runSpecs
-        runName
-        gateIdx
-        triggers
-        probes
-        brainRegions
+        RunSpecs
+        RunName
+        GateIdx
+        Triggers
+        Probes
+        BrainRegions
 
         %Output Destination
         % Cat GT
-        catGTDest
-        runCatGT
-        carMode
-        loccarMin
-        loccarMax
-        catGTCmdStr
-        niPresent
-        niExtractStr
+        CatGTDest
+        RunCatGT
+        CarMode
+        LoccarMin
+        LoccarMax
+        CatGTCmdStr
+        NiPresent
+        NiExtractStr
 
         % Kilosort
-        ksRemDup
-        ksSaveRez
-        ksCopyFporc
-        ksTemplateRadiusUm
-        ksWhiteningRadiusUm
-        ksMinfrGoodChannels
+        KsRemDup
+        KsSaveRez
+        KsCopyFporc
+        KsTemplateRadiusUm
+        KsWhiteningRadiusUm
+        KsMinfrGoodChannels
 
         % C Waves
-        cWavesSnrUm
+        CWavesSnrUm
         EventExParamStr
         
         % TPrime
-        runTPrime
-        syncPeriod
-        toStreamSyncParams
-        niStreamSyncParams
+        RunTPrime
+        SyncPeriod
+        ToStreamSyncParams
+        NiStreamSyncParams
 
         % modules list
-        modules
-        jsonDir
+        Modules
+        JsonDir
 
     end
     
@@ -73,10 +73,10 @@ classdef Config < handle
         %end
         
         function obj=loadFromJson(obj, json)
-            disp(json);
-            obj.refPerMSDict = json.refPerMSDict;
-            obj.ksThDict = json.ksThDict;
-            obj.ecephysDir = json.ecephysDir;
+            % disp(json);
+            obj.RefPerMSDict = json.refPerMSDict;
+            obj.KsThDict = json.ksThDict;
+            obj.EcephysDir = json.ecephysDir;
 
         end
     end

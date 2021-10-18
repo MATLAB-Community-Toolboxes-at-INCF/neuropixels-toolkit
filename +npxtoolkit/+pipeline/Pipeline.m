@@ -1,30 +1,29 @@
-classdef Pipeline < handle
+classdef Pipeline < matlab.mixin.Heterogeneous & handle
     %Pipeline Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        pipelineInfo
-        currentStage
-        stages
+        PipelineInfo
+        CurrentStage
+        Stages
     end
     
-    methods
+    methods(Sealed)
         function obj = Pipeline(pipelineInfo)
-            obj.pipelineInfo = pipelineInfo;
-            obj.currentStage = -1;
-            obj.stages = {};
+            obj.PipelineInfo = pipelineInfo;
+            obj.CurrentStage = -1;
+            obj.Stages = [];
         end
 
         function obj = addStage(obj, stage)
-            obj.stages{end+1} = stage;
+            obj.Stages = [obj.Stages, stage];
         end
         
         function execute(obj)
             % stages have to run in sequence, because of result dependency
-            for stage = obj.stages
-                curr = stage{:};
-                obj.currentStage = curr;
-                disp(strcat("Current Stage: ", curr.stageInfo))
+            for curr = obj.Stages
+                obj.CurrentStage = curr;
+                disp(strcat("Current Stage: ", curr.StageInfo))
                 curr.parExecute();
             end
         end
