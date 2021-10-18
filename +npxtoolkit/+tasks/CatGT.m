@@ -3,19 +3,19 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
     %   Detailed explanation goes here
     
     properties
-        TaskInfo
-        Input
+        Info
+        Config
         Output
     end
     
     methods
-        function obj = CatGT(taskInfo, input)
-            obj.TaskInfo = taskInfo;
-            obj.Input = input;
+        function obj = CatGT(taskInfo, taskConfig)
+            obj.Info = taskInfo;
+            obj.Config = taskConfig;
         end
         
         function execute(obj)
-            disp(strcat("Running task: ", obj.TaskInfo))
+            disp(strcat("Running task: ", obj.Info));
         end
     end
 end

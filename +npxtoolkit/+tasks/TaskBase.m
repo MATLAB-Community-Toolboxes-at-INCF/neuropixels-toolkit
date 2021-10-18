@@ -3,8 +3,8 @@ classdef (Abstract) TaskBase < matlab.mixin.Heterogeneous & handle
     %   Detailed explanation goes here
     
     properties (Abstract)
-        TaskInfo
-        Input
+        Info
+        Config
         Output
     end
     

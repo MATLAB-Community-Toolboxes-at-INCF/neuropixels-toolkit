@@ -1,5 +1,5 @@
-import npxtoolkit.session.Config
 import npxtoolkit.session.Session
+import npxtoolkit.pipeline.Config
 import npxtoolkit.pipeline.Pipeline
 import npxtoolkit.stage.Stage
 import npxtoolkit.tasks.CatGT
@@ -15,27 +15,27 @@ end
 caller = py.importlib.import_module('py_modules.caller');
 py.importlib.reload(caller);
 
-%% Processing Session Configuration
-json = Session.loadJson("configs/test_config.json");
-config = Config();
-config.loadFromJson(json);
-
 %% Processing Session
 % define session
 session = Session('Session Info');
 % init session by pipelines, stages and jobs
-% TODO - session can be auto-assembled by RunSpec
 
-% Pipeline
-pipeline0 = Pipeline('Pipeline0 Info');
+%% Processing Pipeline Configuration
+json = Pipeline.loadJson("configs/test_config.json");
+config = Config();
+config.loadFromJson(json);
+
+%% Pipeline
+pipeline0 = Pipeline('Pipeline0 Info', config);
+% TODO - pipeline can be auto-assembled by pipeline config
 
 % CatGT stage
 stageCatgt = Stage('CatGT');
 % task 0
-taskCatgt0 = CatGT('CatGT probe 0', 'input probe 0');
+taskCatgt0 = CatGT('CatGT probe 0', config);
 stageCatgt.addTask(taskCatgt0);
 % task 1
-taskCatgt1 = CatGT('CatGT probe 1', 'input probe 1');
+taskCatgt1 = CatGT('CatGT probe 1', config);
 stageCatgt.addTask(taskCatgt1);
 % append stage to pipeline
 pipeline0.addStage(stageCatgt);
@@ -43,17 +43,18 @@ pipeline0.addStage(stageCatgt);
 % KiloSort stage
 stageKilo = Stage('KiloSort');
 % task 0
-taskKilo0 = KiloSort('KiloSort probe 0', 'input probe 0');
+taskKilo0 = KiloSort('KiloSort probe 0', config);
 stageKilo.addTask(taskKilo0);
 % task 1
-taskKilo1 = KiloSort('KiloSort probe 1', 'input probe 1');
+taskKilo1 = KiloSort('KiloSort probe 1', config);
 stageKilo.addTask(taskKilo1);
 % append stage to pipeline
 pipeline0.addStage(stageKilo);
 
 session.addPipeline(pipeline0);
 
-pipeline1 = Pipeline('Pipeline1 Info');
+% There can be multiple pipelines in the same session
+pipeline1 = Pipeline('Pipeline1 Info', config);
 session.addPipeline(pipeline1);
 %% Execution
 session.parExecute();

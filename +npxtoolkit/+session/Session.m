@@ -3,13 +3,13 @@ classdef Session < handle
     %   Detailed explanation goes here
     
     properties
-        SessionInfo
+        Info
         Pipelines
     end
     
     methods
         function obj = Session(sessionInfo)
-            obj.SessionInfo = sessionInfo
+            obj.Info = sessionInfo
             obj.Pipelines = [];
         end
         
@@ -20,19 +20,9 @@ classdef Session < handle
         function parExecute(obj)
             % sessions can run in parallel
             for curr = obj.Pipelines
-                disp(strcat("Current Pipeline: ", curr.PipelineInfo))
+                disp(strcat("Current Pipeline: ", curr.Info))
                 curr.execute();
             end
-        end
-    end
-
-    methods(Static)
-        function config = loadJson(fpath)
-            fid = fopen(fpath); 
-            raw = fread(fid,inf); 
-            config = char(raw'); 
-            fclose(fid);
-            config = jsondecode(config);
         end
     end
 end

@@ -3,14 +3,16 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     %   Detailed explanation goes here
     
     properties
-        PipelineInfo
+        Info
+        Config
         CurrentStage
         Stages
     end
     
-    methods(Sealed)
-        function obj = Pipeline(pipelineInfo)
-            obj.PipelineInfo = pipelineInfo;
+    methods
+        function obj = Pipeline(pipelineInfo, pipelineConfig)
+            obj.Info = pipelineInfo;
+            obj.Config = pipelineConfig;
             obj.CurrentStage = -1;
             obj.Stages = [];
         end
@@ -23,9 +25,19 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             % stages have to run in sequence, because of result dependency
             for curr = obj.Stages
                 obj.CurrentStage = curr;
-                disp(strcat("Current Stage: ", curr.StageInfo))
+                disp(strcat("Current Stage: ", curr.Info))
                 curr.parExecute();
             end
+        end
+    end
+    
+    methods(Static)
+        function config = loadJson(fpath)
+            fid = fopen(fpath); 
+            raw = fread(fid,inf); 
+            config = char(raw'); 
+            fclose(fid);
+            config = jsondecode(config);
         end
     end
 end

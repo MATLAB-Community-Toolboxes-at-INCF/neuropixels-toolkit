@@ -3,14 +3,14 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
     %   Detailed explanation goes here
     
     properties
-        StageInfo
+        Info
         CurrentTask
         TaskQueue
     end
     
     methods
         function obj = Stage(stageInfo)
-            obj.StageInfo = stageInfo;
+            obj.Info = stageInfo;
             obj.TaskQueue = [];
         end
 
@@ -21,7 +21,7 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
         function parExecute(obj)
             % TODO - tasks can run in parallel
             for curr = obj.TaskQueue
-                disp(strcat("Current Task: ", curr.TaskInfo))
+                disp(strcat("Current Task: ", curr.Info))
                 curr.execute();
             end
         end
