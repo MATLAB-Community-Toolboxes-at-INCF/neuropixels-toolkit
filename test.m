@@ -25,36 +25,46 @@ json = Pipeline.loadJson("configs/test_config.json");
 config = Config();
 config.loadFromJson(json);
 
-%% Pipeline
-pipeline0 = Pipeline('Pipeline0 Info', config);
-% TODO - pipeline can be auto-assembled by pipeline config
+%%% Pipeline
+%pipeline0 = Pipeline('Pipeline0 Info', config);
+%% TODO - pipeline can be auto-assembled from pipeline config
+%% The idea is to replace the following Stage/Task creation with pipeline0.assebleFromConfig();
+%% Then directly session.addPipeline(pipeline0); session.parExecute();
+%
+%% CatGT stage
+%stageCatgt = Stage('CatGT');
+%% task 0
+%taskCatgt0 = CatGT('CatGT probe 0', config);
+%stageCatgt.addTask(taskCatgt0);
+%% task 1
+%taskCatgt1 = CatGT('CatGT probe 1', config);
+%stageCatgt.addTask(taskCatgt1);
+%% append stage to pipeline
+%pipeline0.addStage(stageCatgt);
+%
+%% KiloSort stage
+%stageKilo = Stage('KiloSort');
+%% task 0
+%taskKilo0 = KiloSort('KiloSort probe 0', config);
+%stageKilo.addTask(taskKilo0);
+%% task 1
+%taskKilo1 = KiloSort('KiloSort probe 1', config);
+%stageKilo.addTask(taskKilo1);
+%% append stage to pipeline
+%pipeline0.addStage(stageKilo);
+%
+%session.addPipeline(pipeline0);
+%
+%% There can be multiple pipelines in the same session
+%pipeline1 = Pipeline('Pipeline1 Info', config);
+%session.addPipeline(pipeline1);
+%%% Execution
+%session.parExecute();
 
-% CatGT stage
-stageCatgt = Stage('CatGT');
-% task 0
-taskCatgt0 = CatGT('CatGT probe 0', config);
-stageCatgt.addTask(taskCatgt0);
-% task 1
-taskCatgt1 = CatGT('CatGT probe 1', config);
-stageCatgt.addTask(taskCatgt1);
-% append stage to pipeline
-pipeline0.addStage(stageCatgt);
 
-% KiloSort stage
-stageKilo = Stage('KiloSort');
-% task 0
-taskKilo0 = KiloSort('KiloSort probe 0', config);
-stageKilo.addTask(taskKilo0);
-% task 1
-taskKilo1 = KiloSort('KiloSort probe 1', config);
-stageKilo.addTask(taskKilo1);
-% append stage to pipeline
-pipeline0.addStage(stageKilo);
 
-session.addPipeline(pipeline0);
-
-% There can be multiple pipelines in the same session
-pipeline1 = Pipeline('Pipeline1 Info', config);
-session.addPipeline(pipeline1);
-%% Execution
-session.parExecute();
+%% Single Task Testing
+disp("=========================")
+% CatGT
+catgt = CatGT("Test CatGT", config);
+catgt.execute();
