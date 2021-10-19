@@ -22,7 +22,7 @@
     "kilosortOutputTmp": "/home/ubuntu/neuropixel/data_for_ecephys/kilosort_datatemp",
 
     "rootDataDir": "/home/ubuntu/neuropixel/data_for_ecephys",
-    "dataDir": "",
+    "dataDir": "subject1_session1",
     "npxDir": "",
     "logName": "SC024_log.csv",
 

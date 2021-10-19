@@ -21,7 +21,7 @@ classdef Config < handle
         
         %Input Data
         RootDataDir
-        
+        DataDir
         NpxDir
         % Name for log file for this session run
         LogName
@@ -85,7 +85,8 @@ classdef Config < handle
             obj.CWavesPath = json.cWavesPath;
             obj.KilosortOutputTmp = json.kilosortOutputTmp;
             obj.RootDataDir = json.rootDataDir;
-            obj.NpxDir = json.npxDir;
+            obj.DataDir = json.dataDir;
+            obj.NpxDir = fullfile(obj.RootDataDir, obj.DataDir);
             obj.LogName = json.logName;
             obj.RunSpecs = json.runSpecs;
             obj.RunName = json.runName;
@@ -94,12 +95,12 @@ classdef Config < handle
             obj.Probes = json.probes;
             obj.BrainRegions = json.brainRegions;
             obj.CatGTDest = json.catGTDest;
-            obj.RunCatGT = json.runCatGT;
+            obj.RunCatGT = str2num(json.runCatGT);
             obj.CarMode = json.carMode;
             obj.LoccarMin = json.loccarMin;
             obj.LoccarMax = json.loccarMax;
             obj.CatGTCmdStr = json.catGTCmdStr;
-            obj.NiPresent = json.niPresent;
+            obj.NiPresent = str2num(json.niPresent);
             obj.NiExtractStr = json.niExtractStr;
             obj.KsRemDup = json.ksRemDup;
             obj.KsSaveRez = json.ksSaveRez;
@@ -109,7 +110,7 @@ classdef Config < handle
             obj.KsMinfrGoodChannels = json.ksMinfrGoodChannels;
             obj.CWavesSnrUm = json.cWavesSnrUm;
             obj.EventExParamStr = json.EventExParamStr;
-            obj.RunTPrime = json.runTPrime;
+            obj.RunTPrime = str2num(json.runTPrime);
             obj.SyncPeriod = json.syncPeriod;
             obj.ToStreamSyncParams = json.toStreamSyncParams;
             obj.NiStreamSyncParams = json.niStreamSyncParams;
