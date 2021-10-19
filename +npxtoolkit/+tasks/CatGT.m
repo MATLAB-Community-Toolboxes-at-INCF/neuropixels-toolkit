@@ -89,6 +89,7 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
                                 " --output_json ", catGTOutputJson);
                 py.py_modules.caller.call_python(params);
             end
+            % TODO - specify output dir
         end
     end
 end

@@ -65,6 +65,9 @@ config.loadFromJson(json);
 
 %% Single Task Testing
 disp("=========================")
-% CatGT
+%% CatGT
 catgt = CatGT("Test CatGT", config);
 catgt.execute();
+%% Kilosort
+kilosort = KiloSort("Test Kilosort", config);
+kilosort.execute();
