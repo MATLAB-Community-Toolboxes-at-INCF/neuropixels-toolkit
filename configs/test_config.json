@@ -34,7 +34,7 @@
     "brainRegions": ["cortex", "thalamus", "default"],
 
     "catGTDest": "",
-    "runCatGT": "false",
+    "runCatGT": "true",
     "carMode": "gblcar",
     "loccarMin": 40,
     "loccarMax": 160,

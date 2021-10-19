@@ -94,7 +94,7 @@ classdef Config < handle
             obj.Triggers = json.triggers;
             obj.Probes = json.probes;
             obj.BrainRegions = json.brainRegions;
-            obj.CatGTDest = json.catGTDest;
+            obj.CatGTDest = obj.DataDir;
             obj.RunCatGT = str2num(json.runCatGT);
             obj.CarMode = json.carMode;
             obj.LoccarMin = json.loccarMin;
