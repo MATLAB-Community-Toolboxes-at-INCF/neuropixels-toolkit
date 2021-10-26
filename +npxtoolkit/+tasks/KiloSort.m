@@ -23,6 +23,8 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
             runFolderName = strcat(config.RunName, '_g', config.GateIdx);
             catGTResultFolderName = strcat('catgt_', runFolderName);
             probFolderName = strcat(runFolderName, '_imec', prb);
+            
+
             moduleInputJson = fullfile(config.JsonDir, strcat(runFolderName, '-input.json'));
             disp(moduleInputJson);
         end

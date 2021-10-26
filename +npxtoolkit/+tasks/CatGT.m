@@ -32,6 +32,7 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             
             disp(strcat('Creating json file for CatGT on probe: ', prb));
             catGTInputJson = fullfile(config.JsonDir, strcat(config.RunName, prb, '_CatGT', '-input.json'));
+            disp(catGTInputJson);
             catGTOutputJson = fullfile(config.JsonDir, strcat(config.RunName, prb, '_CatGT', '-output.json'));
             
             % build extract string for SYNC channel for this probe
@@ -51,7 +52,6 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             continuousFile = fullfile(inputDataDirectory, fileName);
             metaName = strcat(runFolderName, '_t', firstTrig, '.imec', prb, '.ap.meta');
             inputMetaFullpath = fullfile(inputDataDirectory, metaName);
-            disp(inputMetaFullpath);
 
             info = py.py_modules.caller.createInputJson(...
                 pyargs(...
