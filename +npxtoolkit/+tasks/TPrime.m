@@ -6,7 +6,7 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
     end
 
     methods
-        function obj = KiloSort(taskInfo, taskConfig)
+        function obj = TPrime(taskInfo, taskConfig)
             obj.Info = taskInfo;
             obj.Config = taskConfig;
         end
@@ -15,21 +15,26 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
             disp(strcat("Running task: ", obj.Info));
             config = obj.Config;
 
+            prb = '0'; % TODO - probe number, pass from task init
+
+            runFolderName = strcat(config.RunName, '_g', config.GateIdx);
+            catGTResultFolderName = strcat('catgt_', runFolderName);
+            probFolderName = strcat(runFolderName, '_imec', prb);
+            probFolder = fullfile(config.NpxDir, runFolderName, probFolderName);
+            inputDataDirectory = probFolder;
+            fileName = strcat(runFolderName, '_tcat.imec', prb, '.ap.bin');
+            metaName = strcat(runFolderName, '_tcat.imec', prb, '.ap.meta');
+
+            inputMetaFullpath = fullfile(config.NpxDir, catGTResultFolderName, probFolderName, metaName);
+            continuousFile = fullfile(config.NpxDir, catGTResultFolderName, probFolderName, fileName);
+
             taskName = strcat(config.RunName, '_TPrime');
             inputJson = fullfile(config.JsonDir, strcat(taskName, '-input.json'));
             outputJson = fullfile(config.JsonDir, strcat(taskName, '-output.json'));
 
-            %probList = cell(py.py_modules.caller.ParseProbeStr(config.Probes)); % TODO-reduce python 
-            probList = [0]
-
             % build list of sync extractions to send to TPrime
-            imExList = '';
-            for i=1:length(probList)
-                prb = string(probList{i});
-                syncExtract = strcat('-SY=', prb, ',-1,6,500');
-                imExList = strcat(imExList, ' ', syncExtract);
-            end
-
+            syncExtract = strcat('-SY=', prb, ',-1,6,500');
+            imExList = strcat(config.ImExList, ' ', syncExtract);
             disp(strcat('imExList: ', imExList));
             
             info = py.py_modules.caller.createInputJson(...
@@ -66,7 +71,8 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
                 params = strcat("-W ignore -m ecephys_spike_sorting.modules.tPrime_helper",...
                                 " --input_json ", inputJson,...
                                 " --output_json ", outputJson);
-                py.py_modules.caller.call_python(params);
+                disp(params);
+                % py.py_modules.caller.call_python(params);
             end
         end
     end

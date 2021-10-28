@@ -65,6 +65,7 @@ classdef Config < handle
         
         % TPrime
         RunTPrime
+        ImExList
         SyncPeriod
         ToStreamSyncParams
         NiStreamSyncParams
@@ -127,6 +128,7 @@ classdef Config < handle
             obj.CWavesSnrUm = json.cWavesSnrUm;
             obj.EventExParamStr = json.EventExParamStr;
             obj.RunTPrime = str2num(json.runTPrime);
+            obj.ImExList = json.imExList;
             obj.SyncPeriod = json.syncPeriod;
             obj.ToStreamSyncParams = json.toStreamSyncParams;
             obj.NiStreamSyncParams = json.niStreamSyncParams;

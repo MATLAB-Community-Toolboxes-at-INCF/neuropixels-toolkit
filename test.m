@@ -66,12 +66,12 @@ config.loadFromJson(json);
 
 %% Single Task Testing
 disp("=========================")
-%% CatGT
-catgt = CatGT("Test CatGT", config);
-catgt.execute();
-%% Kilosort
-kilosort = KiloSort("Test Kilosort", config);
-kilosort.execute();
+% %% CatGT
+% catgt = CatGT("Test CatGT", config);
+% catgt.execute();
+% %% Kilosort
+% kilosort = KiloSort("Test Kilosort", config);
+% kilosort.execute();
 %% TPrime
 tprime = TPrime("Test TPrime", config);
 tprime.execute();
