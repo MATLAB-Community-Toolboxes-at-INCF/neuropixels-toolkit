@@ -18,7 +18,6 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             disp(strcat("Running task: ", obj.Info));
             config = obj.Config;
 
-            %probList = cell(py.py_modules.caller.ParseProbeStr(config.Probes)); % TODO-reduce python 
             prb = '0'; % TODO - probe number, pass from task init
             taskIdx = 1; % TODO - first task in taskQueue
 

@@ -63,7 +63,8 @@ config.loadFromJson(json);
 %session.parExecute();
 
 
-
+probList = cell(py.py_modules.caller.ParseProbeStr(config.Probes)); % TODO-reduce python 
+disp(probList);
 %% Single Task Testing
 disp("=========================")
 %% CatGT
