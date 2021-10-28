@@ -17,18 +17,15 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
         
         function execute(obj)
             disp(strcat("Running task: ", obj.Info));
-            toolcfg = obj.CommonConfig.Tools;
-            datacfg = obj.CommonConfig.Data;
-            taskcfg = obj.CustomConfig.Configs;
-            disp(toolcfg);
-            disp(datacfg);
-            disp(taskcfg);
+            names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
+            config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
+            disp(config);
             return
 
             prb = '0'; % TODO - probe number, pass from task init
             taskIdx = 1; % TODO - first task in taskQueue
 
-            runFolderName = strcat(config.RunName, '_g', config.GateIdx);
+            runFolderName = strcat(config.runName, '_g', config.gateIdx);
             probFolderName = strcat(runFolderName, '_imec', prb);
             probFolder = fullfile(config.NpxDir, runFolderName, probFolderName);
             triggerList = obj.parseTriggerStr(config.Triggers, prb, config.GateIdx, probFolder);
