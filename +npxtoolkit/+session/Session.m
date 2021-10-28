@@ -9,7 +9,7 @@ classdef Session < handle
     
     methods
         function obj = Session(sessionInfo)
-            obj.Info = sessionInfo
+            obj.Info = sessionInfo;
             obj.Pipelines = [];
         end
         
@@ -20,7 +20,7 @@ classdef Session < handle
         function parExecute(obj)
             % sessions can run in parallel
             for curr = obj.Pipelines
-                disp(strcat("Current Pipeline: ", curr.Info))
+                disp(strcat("Current Pipeline: ", curr.Info));
                 curr.execute();
             end
         end

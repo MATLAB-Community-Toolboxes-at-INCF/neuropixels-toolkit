@@ -39,5 +39,21 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             fclose(fid);
             config = jsondecode(config);
         end
+
+        function probeList = parseProbeStr(probeStr)
+            strList = split(probeStr, ',');
+            probeList = {};
+            for i=1:length(strList)
+                substr = strList{i};
+                if contains(substr, ':')
+                    subsplit = split(substr, ':');
+                    for i=str2num(subsplit{1}):str2num(subsplit{2})
+                        probeList{end+1} = int2str(i);
+                    end
+                else
+                    probeList{end+1} = substr;
+                end
+            end
+        end
     end
 end

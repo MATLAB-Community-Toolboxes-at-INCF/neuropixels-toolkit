@@ -24,9 +24,9 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             runFolderName = strcat(config.RunName, '_g', config.GateIdx);
             probFolderName = strcat(runFolderName, '_imec', prb);
             probFolder = fullfile(config.NpxDir, runFolderName, probFolderName);
-            trigs = cell(py.py_modules.caller.ParseTrigStr(config.Triggers, prb, config.GateIdx, probFolder)); % TODO-reduce python
-            firstTrig = string(int64(trigs{1}));
-            lastTrig = string(int64(trigs{2}));
+            triggerList = obj.parseTriggerStr(config.Triggers, prb, config.GateIdx, probFolder);
+            firstTrig = string(triggerList{1});
+            lastTrig = string(triggerList{2});
             triggerStr = strcat(firstTrig, ',', lastTrig);
             
             disp(strcat('Creating json file for CatGT on probe: ', prb));
@@ -89,6 +89,65 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
                 py.py_modules.caller.call_python(params);
             end
             % TODO - specify output dir
+        end
+    end
+
+    methods (Static)
+        function trailRange = getTrailRange(prb, gate, prbFolder)
+            tFiles = dir(fullfile(prbFolder,'*.bin'));
+            minIndex =  intmax;
+            maxIndex = 0;
+            searchStr = strcat('_g', gate, '_t');
+            % for tName in tFiles:
+            %     if (fnmatch.fnmatch(tName,'*.bin')):
+            %         gPos = tName.find(searchStr)
+            %         tStart = gPos + len(searchStr)
+            %         tEnd = tName.find('.', tStart)
+                    
+            %         if gPos > 0 and tEnd > 0:
+            %             try:
+            %                 tInd = int(tName[tStart:tEnd])                    
+            %             except ValueError:
+            %                 print(tName[tStart:tEnd])
+            %                 print('Error parsing trials for probe folder: ' + prb_folder + '\n')
+            %                 return -1, -1
+            %         else:
+            %             print('Error parsing trials for probe folder: ' + prb_folder + '\n')
+            %             return -1, -1
+                    
+            %         if tInd > maxIndex:
+            %             maxIndex = tInd
+            %         if tInd < minIndex:
+            %             minIndex = tInd
+                        
+            % return minIndex, maxIndex
+            trailRange = [0,0];
+        end
+
+        function triggerList = parseTriggerStr(triggerStr, prb, gate, prbFolder)
+            strList = split(triggerStr, ',');
+            firstTrigStr = strList{1};
+            lastTrigStr = strList{2};
+            
+            if contains(lastTrigStr, 'end') || contains(firstTrigStr, 'start')
+                % TODO - npxtoolkit.tasks.CatGT.getTrailRange()
+                minInd = 0;
+                maxInd = 0;
+            end
+
+            if contains(firstTrigStr, 'start')
+                firstTrig = minInd;
+            else
+                firstTrig = str2num(firstTrigStr);
+            end
+            
+            if contains(lastTrigStr, 'end')
+                lastTrig = maxInd;
+            else
+                lastTrig = str2num(lastTrigStr);
+            end
+
+            triggerList = {firstTrig, lastTrig};
         end
     end
 end

@@ -33,7 +33,7 @@
     "probes": "0",
     "brainRegions": ["cortex", "thalamus", "default"],
 
-    "runCatGT": "true",
+    "runCatGT": "false",
     "carMode": "gblcar",
     "loccarMin": 40,
     "loccarMax": 160,

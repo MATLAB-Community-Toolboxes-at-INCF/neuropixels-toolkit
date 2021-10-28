@@ -63,16 +63,17 @@ config.loadFromJson(json);
 %session.parExecute();
 
 
-probList = cell(py.py_modules.caller.ParseProbeStr(config.Probes)); % TODO-reduce python 
-disp(probList);
 %% Single Task Testing
 disp("=========================")
+%% Auto-assemble
+probeList = Pipeline.parseProbeStr(config.Probes);
+
 %% CatGT
 catgt = CatGT("Test CatGT", config);
 catgt.execute();
-%% Kilosort
-kilosort = KiloSort("Test Kilosort", config);
-kilosort.execute();
-%% TPrime
-tprime = TPrime("Test TPrime", config);
-tprime.execute();
+% %% Kilosort
+% kilosort = KiloSort("Test Kilosort", config);
+% kilosort.execute();
+% %% TPrime
+% tprime = TPrime("Test TPrime", config);
+% tprime.execute();
