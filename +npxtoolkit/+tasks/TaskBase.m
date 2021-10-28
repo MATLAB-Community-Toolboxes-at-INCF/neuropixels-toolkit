@@ -4,7 +4,7 @@ classdef (Abstract) TaskBase < matlab.mixin.Heterogeneous & handle
     
     properties (Abstract)
         Info
-        Config
+        CommonConfig
         Output
     end
     

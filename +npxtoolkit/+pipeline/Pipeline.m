@@ -4,7 +4,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     
     properties
         Info
-        Config
+        PipelineConfig
         CurrentStage
         Stages
     end
@@ -12,12 +12,13 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     methods
         function obj = Pipeline(pipelineInfo, pipelineConfig)
             obj.Info = pipelineInfo;
-            obj.Config = pipelineConfig;
+            obj.PipelineConfig = pipelineConfig;
             obj.CurrentStage = -1;
             obj.Stages = [];
         end
 
         function obj = addStage(obj, stage)
+            stage.CommonConfigForTask = obj.PipelineConfig;
             obj.Stages = [obj.Stages, stage];
         end
         
@@ -32,14 +33,6 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     end
     
     methods(Static)
-        function config = loadJson(fpath)
-            fid = fopen(fpath); 
-            raw = fread(fid,inf); 
-            config = char(raw'); 
-            fclose(fid);
-            config = jsondecode(config);
-        end
-
         function probeList = parseProbeStr(probeStr)
             strList = split(probeStr, ',');
             probeList = {};

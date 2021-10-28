@@ -4,14 +4,15 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
     
     properties
         Info
-        Config
+        CommonConfig
+        CustomConfig
         Output
     end
     
     methods
         function obj = KiloSort(taskInfo, taskConfig)
             obj.Info = taskInfo;
-            obj.Config = taskConfig;
+            obj.CustomConfig = taskConfig;
         end
         
         function execute(obj)

@@ -1,14 +1,15 @@
 classdef TPrime < npxtoolkit.tasks.TaskBase
     properties
         Info
-        Config
+        CommonConfig
+        CustomConfig
         Output
     end
 
     methods
         function obj = TPrime(taskInfo, taskConfig)
             obj.Info = taskInfo;
-            obj.Config = taskConfig;
+            obj.CustomConfig = taskConfig;
         end
         
         function execute(obj)

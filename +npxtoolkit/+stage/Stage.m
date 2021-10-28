@@ -4,6 +4,7 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
     
     properties
         Info
+        CommonConfigForTask
         CurrentTask
         TaskQueue
     end
@@ -15,6 +16,7 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
         end
 
         function obj = addTask(obj, task)
+            task.CommonConfig = obj.CommonConfigForTask;
             obj.TaskQueue = [obj.TaskQueue, task];
         end
 

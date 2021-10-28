@@ -4,19 +4,26 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
     
     properties
         Info
-        Config
+        CommonConfig
+        CustomConfig
         Output
     end
     
     methods
         function obj = CatGT(taskInfo, taskConfig)
             obj.Info = taskInfo;
-            obj.Config = taskConfig;
+            obj.CustomConfig = taskConfig;
         end
         
         function execute(obj)
             disp(strcat("Running task: ", obj.Info));
-            config = obj.Config;
+            toolcfg = obj.CommonConfig.Tools;
+            datacfg = obj.CommonConfig.Data;
+            taskcfg = obj.CustomConfig.Configs;
+            disp(toolcfg);
+            disp(datacfg);
+            disp(taskcfg);
+            return
 
             prb = '0'; % TODO - probe number, pass from task init
             taskIdx = 1; % TODO - first task in taskQueue
