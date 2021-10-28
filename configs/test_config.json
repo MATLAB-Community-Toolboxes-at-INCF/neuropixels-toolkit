@@ -13,7 +13,7 @@
     },
     
     "ecephysDir": "/home/ubuntu/neuropixel/ecephys_spike_sorting/ecephys_spike_sorting",
-    "KS2ver": "3.0",
+    "KSver": "3.0",
     "kilosortRepo": "/home/ubuntu/neuropixel/Kilosort-",
     "npyMatlabRepo": "/home/ubuntu/neuropixel/npy-matlab",
     "catGTPath": "/home/ubuntu/neuropixel/CatGT-linux",
@@ -23,8 +23,8 @@
 
     "rootDataDir": "/home/ubuntu/neuropixel/data_for_ecephys",
     "dataDir": "subject1_session1",
-    "npxDir": "",
     "logName": "SC024_log.csv",
+    "spikeGLXData": "true",
 
     "runSpecs": "",
     "runName": "SC011_021919",
@@ -33,7 +33,6 @@
     "probes": "0",
     "brainRegions": ["cortex", "thalamus", "default"],
 
-    "catGTDest": "",
     "runCatGT": "true",
     "carMode": "gblcar",
     "loccarMin": 40,
@@ -42,9 +41,14 @@
     "niPresent": "true",
     "niExtractStr": " -XA=0,1,3,500 -iXA=1,3,3,0  -XD=-1,1,50 -XD=-1,2,1.7 -XD=-1,3,5 -iXD=-1,3,5",
 
+    "noiseTemplateUseRf": "false",
     "ksRemDup": 0,
+    "ksFinalSplits": 1,
+    "ksLabelGood": 1,
     "ksSaveRez": 1,
     "ksCopyFporc": 0,
+    "ksCSBseed": 1,
+    "ksLTseed":1,
     "ksTemplateRadiusUm": 163,
     "ksWhiteningRadiusUm": 163,
     "ksMinfrGoodChannels": 0.1,

@@ -11,7 +11,7 @@ classdef Config < handle
         
         %External tool/module path
         EcephysDir
-        KS2ver
+        KSver
         KilosortRepo
         NpyMatlabRepo
         CatGTPath
@@ -33,6 +33,8 @@ classdef Config < handle
         Probes
         BrainRegions
 
+        % Data source
+        SpikeGLXData
         %Output Destination
         % Cat GT
         CatGTDest
@@ -45,9 +47,14 @@ classdef Config < handle
         NiExtractStr
 
         % Kilosort
+        NoiseTemplateUseRf
         KsRemDup
+        KsFinalSplits
+        KsLabelGood
         KsSaveRez
         KsCopyFporc
+        KsCSBseed
+        KsLTseed
         KsTemplateRadiusUm
         KsWhiteningRadiusUm
         KsMinfrGoodChannels
@@ -77,8 +84,8 @@ classdef Config < handle
             obj.RefPerMSDict = json.refPerMSDict;
             obj.KsThDict = json.ksThDict;
             obj.EcephysDir = json.ecephysDir;
-            obj.KS2ver = json.KS2ver;
-            obj.KilosortRepo = json.kilosortRepo;
+            obj.KSver = json.KSver;
+            obj.KilosortRepo = strcat(json.kilosortRepo, obj.KSver);
             obj.NpyMatlabRepo = json.npyMatlabRepo;
             obj.CatGTPath = json.catGTPath;
             obj.TPrimePath = json.tPrimePath;
@@ -94,7 +101,8 @@ classdef Config < handle
             obj.Triggers = json.triggers;
             obj.Probes = json.probes;
             obj.BrainRegions = json.brainRegions;
-            obj.CatGTDest = obj.DataDir;
+            obj.SpikeGLXData = str2num(json.spikeGLXData);
+            obj.CatGTDest = obj.NpxDir;
             obj.RunCatGT = str2num(json.runCatGT);
             obj.CarMode = json.carMode;
             obj.LoccarMin = json.loccarMin;
@@ -102,9 +110,14 @@ classdef Config < handle
             obj.CatGTCmdStr = json.catGTCmdStr;
             obj.NiPresent = str2num(json.niPresent);
             obj.NiExtractStr = json.niExtractStr;
+            obj.NoiseTemplateUseRf = str2num(json.noiseTemplateUseRf);
             obj.KsRemDup = json.ksRemDup;
+            obj.KsFinalSplits = json.ksFinalSplits;
+            obj.KsLabelGood = json.ksLabelGood;
             obj.KsSaveRez = json.ksSaveRez;
             obj.KsCopyFporc = json.ksCopyFporc;
+            obj.KsCSBseed = json.ksCSBseed;
+            obj.KsLTseed = json.ksLTseed;
             obj.KsTemplateRadiusUm = json.ksTemplateRadiusUm; 
             obj.KsWhiteningRadiusUm = json.ksWhiteningRadiusUm;
             obj.KsMinfrGoodChannels = json.ksMinfrGoodChannels;
