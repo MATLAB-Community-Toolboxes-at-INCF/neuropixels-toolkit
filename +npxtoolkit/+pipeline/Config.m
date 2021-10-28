@@ -68,6 +68,9 @@ classdef Config < handle
         SyncPeriod
         ToStreamSyncParams
         NiStreamSyncParams
+        TPrime3A
+        ToStreamPath3A
+        FromStreamList3A
 
         % modules list
         Modules
@@ -127,6 +130,9 @@ classdef Config < handle
             obj.SyncPeriod = json.syncPeriod;
             obj.ToStreamSyncParams = json.toStreamSyncParams;
             obj.NiStreamSyncParams = json.niStreamSyncParams;
+            obj.TPrime3A = str2num(json.tPrime3A);
+            obj.ToStreamPath3A = json.toStreamPath3A;
+            obj.FromStreamList3A = json.fromStreamList3A;
             obj.Modules = json.modules;
             obj.JsonDir = json.jsonDir;
         end

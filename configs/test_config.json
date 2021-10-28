@@ -60,6 +60,9 @@
     "syncPeriod": 1.0,
     "toStreamSyncParams": "XA=0,1,3,500",
     "niStreamSyncParams": "XA=0,1,3,500",
+    "tPrime3A": "false",
+    "toStreamPath3A": " ",
+    "fromStreamList3A": [],
 
     "modules": ["kilosort_helper", "kilosort_postprocessing", "noise_templates", "mean_waveforms", "quality_metrics"],
     "jsonDir": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs"

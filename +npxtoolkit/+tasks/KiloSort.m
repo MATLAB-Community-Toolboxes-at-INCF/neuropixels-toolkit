@@ -92,7 +92,6 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
                 params = strcat("-W ignore -m ecephys_spike_sorting.modules.", moduleName,...
                                 " --input_json ", moduleInputJson,...
                                 " --output_json ", outputJson);
-                disp(params);
                 py.py_modules.caller.call_python(params);
             end
         end

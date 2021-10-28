@@ -4,6 +4,7 @@ import npxtoolkit.pipeline.Pipeline
 import npxtoolkit.stage.Stage
 import npxtoolkit.tasks.CatGT
 import npxtoolkit.tasks.KiloSort
+import npxtoolkit.tasks.TPrime
 
 %% Future ENV Var 
 PYENV_PATH = '/home/ubuntu/anaconda3/envs/spike_sorting/bin/python';
@@ -71,3 +72,6 @@ catgt.execute();
 %% Kilosort
 kilosort = KiloSort("Test Kilosort", config);
 kilosort.execute();
+%% TPrime
+tprime = TPrime("Test TPrime", config);
+tprime.execute();
