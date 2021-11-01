@@ -1,14 +1,16 @@
 classdef TPrime < npxtoolkit.tasks.TaskBase
     properties
         Info
+        Probe
         CommonConfig
         CustomConfig
         Output
     end
 
     methods
-        function obj = TPrime(taskInfo, taskConfig)
+        function obj = TPrime(taskInfo, probe, taskConfig)
             obj.Info = taskInfo;
+            obj.Probe = probe;
             taskConfig.Configs.runTPrime = str2num(taskConfig.Configs.runTPrime);
             taskCOnfig.Configs.tPrime3A = str2num(taskConfig.Configs.tPrime3A);
             obj.CustomConfig = taskConfig;
@@ -19,7 +21,7 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
             names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
             config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
 
-            prb = '0'; % TODO - probe number, pass from task init
+            prb = obj.Probe;
 
             runFolderName = strcat(config.runName, '_g', config.gateIdx);
             catGTResultFolderName = strcat('catgt_', runFolderName);

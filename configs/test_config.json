@@ -21,7 +21,7 @@
             "runName": "SC011_021919",
             "gateIdx": "0",
             "triggers": "0,0",
-            "probes": "0",
+            "probes": "0,1,2",
             "brainRegions": ["cortex", "thalamus", "default"]
         }
     },

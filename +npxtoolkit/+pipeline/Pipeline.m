@@ -7,6 +7,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
         PipelineConfig
         CurrentStage
         Stages
+        StageVal = ["CatGT", "KiloSort", "TPrime"]
     end
     
     methods
@@ -22,6 +23,35 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             obj.Stages = [obj.Stages, stage];
         end
         
+        function obj = autoAssemble(obj, json)
+            import npxtoolkit.stage.Stage
+            import npxtoolkit.config.TaskConfig
+            import npxtoolkit.tasks.CatGT
+            import npxtoolkit.tasks.KiloSort
+            import npxtoolkit.tasks.TPrime
+            for stageName = obj.StageVal
+                stage = Stage(stageName);
+                obj.addStage(stage);
+                probeList = obj.parseProbeStr(obj.PipelineConfig.Data.probes);
+                brainRegions = obj.PipelineConfig.Data.brainRegions;
+                for i = 1:length(probeList)
+                    probe = probeList{i};
+                    brainRegion = brainRegions{i};
+                    if stageName == "CatGT"
+                        config = TaskConfig(json.CatGT);
+                        task = CatGT(strcat('CatGT probe', probe), probe, i, config);
+                    elseif stageName == "KiloSort"
+                        config = TaskConfig(json.KiloSort);
+                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, config);
+                    elseif stageName == "TPrime"
+                        config = TaskConfig(json.TPrime);
+                        task = TPrime(strcat('TPrime probe ', probe), probe, config);
+                    end
+                    stage.addTask(task);
+                end
+            end
+        end
+
         function execute(obj)
             % stages have to run in sequence, because of result dependency
             for curr = obj.Stages

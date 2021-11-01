@@ -4,14 +4,18 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
     
     properties
         Info
+        Probe
+        BrainRegion
         CommonConfig
         CustomConfig
         Output
     end
     
     methods
-        function obj = KiloSort(taskInfo, taskConfig)
+        function obj = KiloSort(taskInfo, probe, brainRegion, taskConfig)
             obj.Info = taskInfo;
+            obj.Probe = probe;
+            obj.BrainRegion = brainRegion;
             taskConfig.Configs.noiseTemplateUseRf = str2num(taskConfig.Configs.noiseTemplateUseRf);
             obj.CustomConfig = taskConfig;
         end
@@ -21,8 +25,8 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
             names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
             config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
 
-            prb = '0'; % TODO - probe number, pass from task init
-            brain_region = 'cortex'; % TODO - probe number, pass from task init
+            prb = obj.Probe;
+            brainRegion = obj.BrainRegion;
 
             runFolderName = strcat(config.runName, '_g', config.gateIdx);
             catGTResultFolderName = strcat('catgt_', runFolderName);
@@ -42,8 +46,8 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
             end
             kilosort_output_dir = fullfile(inputDataDirectory, outputName);
             
-            ksTh = getfield(config.ksThDict, brain_region);
-            refPerMS = getfield(config.refPerMSDict, brain_region);
+            ksTh = getfield(config.ksThDict, brainRegion);
+            refPerMS = getfield(config.refPerMSDict, brainRegion);
             disp(strcat('ksTh: ', ksTh, ' ,refPerMS: ', string(refPerMS)));
 
             moduleInputJson = fullfile(config.jsonDir, strcat(runFolderName, '-input.json'));
