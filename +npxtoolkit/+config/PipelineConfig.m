@@ -9,10 +9,12 @@ classdef PipelineConfig < npxtoolkit.config.Config
 
     methods
         function obj = PipelineConfig(configs)
+            configs.tools.kilosortRepo = strcat(configs.tools.kilosortRepo, configs.tools.KSver);
             obj.Tools = configs.tools;
-            obj.Tools.kilosortRepo = strcat(obj.Tools.kilosortRepo, obj.Tools.KSver);
+            configs.data.npxDir = fullfile(configs.data.rootDataDir, configs.data.dataDir);
+            configs.data.catGTDest = configs.data.npxDir;
+            configs.data.spikeGLXData = str2num(configs.data.spikeGLXData);
             obj.Data = configs.data;
-            obj.Data.npxDir = fullfile(obj.Data.rootDataDir, obj.Data.dataDir);
         end
     end
 end
