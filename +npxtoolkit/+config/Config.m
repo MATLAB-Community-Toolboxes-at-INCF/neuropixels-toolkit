@@ -4,11 +4,22 @@ classdef (Abstract) Config < handle
 
     methods (Static)
         function config = parseJson(fpath)
-            fid = fopen(fpath); 
-            raw = fread(fid,inf); 
-            config = char(raw'); 
-            fclose(fid);
-            config = jsondecode(config);
+            try
+                fid = fopen(fpath); 
+                raw = fread(fid,inf); 
+                config = char(raw'); 
+                fclose(fid);
+                config = jsondecode(config);
+            catch ME
+                import npxtoolkit.internal.thirdparty.logging.log4m
+                switch ME.identifier
+                    case 'MATLAB:FileIO:InvalidFid'
+                        logger = log4m.getLogger("npx.log");
+                        logger.error("Error - Config.m", "Config file is not found");
+                    otherwise
+                        rethrow(ME);
+                end
+            end
         end
     end
 end

@@ -26,7 +26,12 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
             % TODO - tasks can run in parallel
             for curr = obj.TaskQueue
                 obj.L.info(strcat("Stage.m - ", obj.Info), strcat("Excuting Task: ", curr.Info));
-                curr.execute();
+                try
+                    curr.execute();
+                catch ME
+                    obj.L.error("Error - Stage.m curr.execute", strcat(curr.Info, " Execution"));
+                    rethrow(ME);
+                end
             end
         end
     end

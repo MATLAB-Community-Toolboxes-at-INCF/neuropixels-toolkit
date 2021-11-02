@@ -27,5 +27,17 @@ classdef Session < handle
             end
         end
     end
+
+    methods (Static)
+        function setPyEnv(PYENV_PATH)
+            % load python modules
+            pe = pyenv();
+            if pe.Status == "NotLoaded"
+                pyenv('Version', PYENV_PATH);
+            end
+            caller = py.importlib.import_module('py_modules.caller');
+            py.importlib.reload(caller);
+        end
+    end
 end
 

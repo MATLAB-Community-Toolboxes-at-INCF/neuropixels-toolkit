@@ -17,7 +17,6 @@
             "dataDir": "subject1_session1",
             "logName": "SC024_log.csv",
             "spikeGLXData": "true",
-            "runSpecs": "",
             "runName": "SC011_021919",
             "gateIdx": "0",
             "triggers": "0,0",
