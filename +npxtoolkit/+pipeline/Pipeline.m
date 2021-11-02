@@ -8,14 +8,17 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
         CurrentStage
         Stages
         StageVal = ["CatGT", "KiloSort", "TPrime"]
+        L
     end
     
     methods
-        function obj = Pipeline(pipelineInfo, pipelineConfig)
+        function obj = Pipeline(pipelineInfo, pipelineConfig, logger)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = pipelineInfo;
             obj.PipelineConfig = pipelineConfig;
             obj.CurrentStage = -1;
             obj.Stages = [];
+            obj.L = logger;
         end
 
         function obj = addStage(obj, stage)
@@ -30,7 +33,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             import npxtoolkit.tasks.KiloSort
             import npxtoolkit.tasks.TPrime
             for stageName = obj.StageVal
-                stage = Stage(stageName);
+                stage = Stage(stageName, obj.L);
                 obj.addStage(stage);
                 probeList = obj.parseProbeStr(obj.PipelineConfig.Data.probes);
                 brainRegions = obj.PipelineConfig.Data.brainRegions;
@@ -38,14 +41,17 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
                     probe = probeList{i};
                     brainRegion = brainRegions{i};
                     if stageName == "CatGT"
+                        obj.L.info("Pipeline.m", strcat("Adding CatGT for probe ", probe));
                         config = TaskConfig(json.CatGT);
-                        task = CatGT(strcat('CatGT probe', probe), probe, i, config);
+                        task = CatGT(strcat('CatGT probe', probe), probe, i, config, obj.L);
                     elseif stageName == "KiloSort"
+                        obj.L.info("Pipeline.m", strcat("Adding KiloSort for probe ", probe));
                         config = TaskConfig(json.KiloSort);
-                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, config);
+                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, config, obj.L);
                     elseif stageName == "TPrime"
+                        obj.L.info("Pipeline.m", strcat("Adding TPrime for probe ", probe));
                         config = TaskConfig(json.TPrime);
-                        task = TPrime(strcat('TPrime probe ', probe), probe, config);
+                        task = TPrime(strcat('TPrime probe ', probe), probe, config, obj.L);
                     end
                     stage.addTask(task);
                 end
@@ -56,7 +62,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             % stages have to run in sequence, because of result dependency
             for curr = obj.Stages
                 obj.CurrentStage = curr;
-                disp(strcat("Current Stage: ", curr.Info))
+                obj.L.info(strcat("Pipeline.m - ", obj.Info), strcat("Executing Stage: ", curr.Info));
                 curr.parExecute();
             end
         end

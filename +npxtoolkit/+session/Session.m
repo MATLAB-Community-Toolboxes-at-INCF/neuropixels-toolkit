@@ -5,12 +5,14 @@ classdef Session < handle
     properties
         Info
         Pipelines
+        L
     end
     
     methods
-        function obj = Session(sessionInfo)
+        function obj = Session(sessionInfo, logger)
             obj.Info = sessionInfo;
             obj.Pipelines = [];
+            obj.L = logger;
         end
         
         function obj = addPipeline(obj, pipeline)
@@ -20,7 +22,7 @@ classdef Session < handle
         function parExecute(obj)
             % sessions can run in parallel
             for curr = obj.Pipelines
-                disp(strcat("Current Pipeline: ", curr.Info));
+                obj.L.info("Session.m", strcat("Excuting Pipeline: ", curr.Info, "..."));
                 curr.execute();
             end
         end

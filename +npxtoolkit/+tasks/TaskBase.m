@@ -6,6 +6,7 @@ classdef (Abstract) TaskBase < matlab.mixin.Heterogeneous & handle
         Info
         CommonConfig
         Output
+        L
     end
     
     methods (Abstract)

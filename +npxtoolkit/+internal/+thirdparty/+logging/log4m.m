@@ -30,8 +30,8 @@ classdef log4m < handle
     
     properties(SetAccess = protected)
         fullpath = 'log4m.log';  %Default file
-        commandWindowLevel = log4m.ALL;
-        logLevel = log4m.INFO;
+        commandWindowLevel = npxtoolkit.internal.thirdparty.logging.log4m.ALL;
+        logLevel = npxtoolkit.internal.thirdparty.logging.log4m.INFO;
     end
     
     methods (Static)
@@ -42,7 +42,8 @@ classdef log4m < handle
             %   OUTPUT:
             %       obj - Reference to signular logger object.
             %
-            
+            import npxtoolkit.internal.thirdparty.logging.log4m
+
             if(nargin == 0)
                 logPath = 'log4m.log';
             elseif(nargin > 1)
@@ -65,7 +66,8 @@ classdef log4m < handle
             %   the user an idea of how various types of logging will
             %   perform on their system.
             %
-            
+            import npxtoolkit.internal.thirdparty.logging.log4m
+
             L = log4m.getLogger(logPath);
             
             
@@ -134,6 +136,12 @@ classdef log4m < handle
             self.logLevel = logLevel;
         end
         
+        
+        function clearLog(self)
+            if exist(self.fullpath, "file")==2
+                delete(self.fullpath);
+            end
+        end
 
 %% The public Logging methods %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         function trace(self, funcName, message)

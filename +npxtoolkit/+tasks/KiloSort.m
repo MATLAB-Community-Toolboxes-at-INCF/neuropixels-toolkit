@@ -9,19 +9,21 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
         CommonConfig
         CustomConfig
         Output
+        L
     end
     
     methods
-        function obj = KiloSort(taskInfo, probe, brainRegion, taskConfig)
+        function obj = KiloSort(taskInfo, probe, brainRegion, taskConfig, logger)
             obj.Info = taskInfo;
             obj.Probe = probe;
             obj.BrainRegion = brainRegion;
             taskConfig.Configs.noiseTemplateUseRf = str2num(taskConfig.Configs.noiseTemplateUseRf);
             obj.CustomConfig = taskConfig;
+            obj.L = logger;
         end
         
         function execute(obj)
-            disp(strcat("Running task: ", obj.Info));
+            obj.L.info("KiloSort.m", strcat("Running task: ", obj.Info));
             names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
             config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
 
@@ -48,10 +50,9 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
             
             ksTh = getfield(config.ksThDict, brainRegion);
             refPerMS = getfield(config.refPerMSDict, brainRegion);
-            disp(strcat('ksTh: ', ksTh, ' ,refPerMS: ', string(refPerMS)));
+            obj.L.debug(strcat("KiloSort.m - ", obj.Info), strcat('ksTh: ', ksTh, ' ,refPerMS: ', string(refPerMS)));
 
             moduleInputJson = fullfile(config.jsonDir, strcat(runFolderName, '-input.json'));
-            disp(moduleInputJson);
 
             info = py.py_modules.caller.createInputJson(...
                 pyargs(...
@@ -93,14 +94,17 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
 
             for i=1:length(config.modules)
                 moduleName = config.modules{i};
+                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("Running module: ", moduleName));
                 outputJson = fullfile(config.jsonDir, strcat(runFolderName, '-', moduleName, '-output.json'));
-                disp(outputJson);
                 % TODO - reduce python
                 params = strcat("-W ignore -m ecephys_spike_sorting.modules.", moduleName,...
                                 " --input_json ", moduleInputJson,...
                                 " --output_json ", outputJson);
+                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("python ", params));
                 py.py_modules.caller.call_python(params);
+                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("Module: ", moduleName, "Done!"));
             end
+            obj.L.info(strcat("KiloSort.m - ", obj.Info), "Done!");
         end
     end
 end

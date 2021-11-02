@@ -9,20 +9,22 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
         CommonConfig
         CustomConfig
         Output
+        L
     end
     
     methods
-        function obj = CatGT(taskInfo, probe, order, taskConfig)
+        function obj = CatGT(taskInfo, probe, order, taskConfig, logger)
             obj.Info = taskInfo;
             obj.Probe = probe;
             obj.Order = order;
             taskConfig.Configs.runCatGT = str2num(taskConfig.Configs.runCatGT);
             taskConfig.Configs.niPresent = str2num(taskConfig.Configs.niPresent);
             obj.CustomConfig = taskConfig;
+            obj.L = logger;
         end
         
         function execute(obj)
-            disp(strcat("Running task: ", obj.Info));
+            obj.L.info("CatGT.m", strcat("Running task: ", obj.Info));
             names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
             config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
 
@@ -37,9 +39,8 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             lastTrig = string(triggerList{2});
             triggerStr = strcat(firstTrig, ',', lastTrig);
             
-            disp(strcat('Creating json file for CatGT on probe: ', prb));
+            obj.L.info(strcat("CatGT.m - ", obj.Info), strcat('Creating json file for CatGT on probe: ', prb));
             catGTInputJson = fullfile(config.jsonDir, strcat(config.runName, prb, '_CatGT', '-input.json'));
-            disp(catGTInputJson);
             catGTOutputJson = fullfile(config.jsonDir, strcat(config.runName, prb, '_CatGT', '-output.json'));
             
             % build extract string for SYNC channel for this probe
@@ -94,7 +95,11 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
                 params = strcat("-W ignore -m ecephys_spike_sorting.modules.catGT_helper",...
                                 " --input_json ", catGTInputJson,...
                                 " --output_json ", catGTOutputJson);
+                obj.L.debug(strcat("CatGT.m - ", obj.Info), strcat("python ", params));
                 py.py_modules.caller.call_python(params);
+                obj.L.info(strcat("CatGT.m - ", obj.Info), "Done!");
+            else
+                obj.L.info(strcat("CatGT.m - ", obj.Info), "Skipped!");
             end
         end
     end

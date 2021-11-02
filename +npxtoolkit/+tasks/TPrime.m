@@ -5,19 +5,21 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
         CommonConfig
         CustomConfig
         Output
+        L
     end
 
     methods
-        function obj = TPrime(taskInfo, probe, taskConfig)
+        function obj = TPrime(taskInfo, probe, taskConfig, logger)
             obj.Info = taskInfo;
             obj.Probe = probe;
             taskConfig.Configs.runTPrime = str2num(taskConfig.Configs.runTPrime);
             taskCOnfig.Configs.tPrime3A = str2num(taskConfig.Configs.tPrime3A);
             obj.CustomConfig = taskConfig;
+            obj.L = logger;
         end
         
         function execute(obj)
-            disp(strcat("Running task: ", obj.Info));
+            obj.L.info("TPrime.m", strcat("Running task: ", obj.Info));
             names = [fieldnames(obj.CommonConfig.Tools); fieldnames(obj.CommonConfig.Data); fieldnames(obj.CustomConfig.Configs)];
             config = cell2struct([struct2cell(obj.CommonConfig.Tools); struct2cell(obj.CommonConfig.Data); struct2cell(obj.CustomConfig.Configs)], names, 1);
 
@@ -41,7 +43,7 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
             % build list of sync extractions to send to TPrime
             syncExtract = strcat('-SY=', prb, ',-1,6,500');
             imExList = strcat(config.imExList, ' ', syncExtract);
-            disp(strcat('imExList: ', imExList));
+            obj.L.debug(strcat("KiloSort.m - ", obj.Info), strcat('imExList: ', imExList));
             
             info = py.py_modules.caller.createInputJson(...
                 pyargs(...
@@ -77,7 +79,11 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
                 params = strcat("-W ignore -m ecephys_spike_sorting.modules.tPrime_helper",...
                                 " --input_json ", inputJson,...
                                 " --output_json ", outputJson);
+                obj.L.debug(strcat("TPrime.m - ", obj.Info), strcat("python ", params));
                 py.py_modules.caller.call_python(params);
+                obj.L.info(strcat("TPrime.m - ", obj.Info), "Done!");
+            else
+                obj.L.info(strcat("TPrime.m - ", obj.Info), "Skipped!");
             end
         end
     end

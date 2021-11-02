@@ -7,12 +7,14 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
         CommonConfigForTask
         CurrentTask
         TaskQueue
+        L
     end
     
     methods
-        function obj = Stage(stageInfo)
+        function obj = Stage(stageInfo, logger)
             obj.Info = stageInfo;
             obj.TaskQueue = [];
+            obj.L = logger;
         end
 
         function obj = addTask(obj, task)
@@ -23,7 +25,7 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
         function parExecute(obj)
             % TODO - tasks can run in parallel
             for curr = obj.TaskQueue
-                disp(strcat("Current Task: ", curr.Info))
+                obj.L.info(strcat("Stage.m - ", obj.Info), strcat("Excuting Task: ", curr.Info));
                 curr.execute();
             end
         end
