@@ -16,7 +16,7 @@ session = Session('Session Info', logger);
 
 %% Setup Python env 
 % TODO - Future ENV Var 
-PYENV_PATH = '/home/ubuntu/anaconda3/envs/spike_sorting/bin/python';
+PYENV_PATH = '/home/ubuntu/anaconda3/envs/npx/bin/python';
 logger.info("test.m", "Setting up Python environment...");
 session.setPyEnv(PYENV_PATH);
 logger.info("test.m", "Done with setting up Python environment!");
