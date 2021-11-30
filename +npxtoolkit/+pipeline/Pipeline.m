@@ -4,7 +4,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     
     properties
         Info
-        PipelineConfig
+        PipelineConfigs
         CurrentStage
         Stages
         StageVal = ["CatGT", "KiloSort", "TPrime"]
@@ -12,46 +12,42 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     end
     
     methods
-        function obj = Pipeline(pipelineInfo, pipelineConfig, logger)
+        function obj = Pipeline(pipelineInfo, config_path, logger)
+            import npxtoolkit.internal.config.PipelineConfig
             import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = pipelineInfo;
-            obj.PipelineConfig = pipelineConfig;
+            obj.PipelineConfigs = PipelineConfig(config_path);
             obj.CurrentStage = -1;
             obj.Stages = [];
             obj.L = logger;
         end
 
         function obj = addStage(obj, stage)
-            stage.CommonConfigForTask = obj.PipelineConfig;
             obj.Stages = [obj.Stages, stage];
         end
         
-        function obj = autoAssemble(obj, json)
+        function obj = autoAssemble(obj)
             import npxtoolkit.stage.Stage
-            import npxtoolkit.config.TaskConfig
             import npxtoolkit.tasks.CatGT
             import npxtoolkit.tasks.KiloSort
             import npxtoolkit.tasks.TPrime
             for stageName = obj.StageVal
                 stage = Stage(stageName, obj.L);
                 obj.addStage(stage);
-                probeList = obj.parseProbeStr(obj.PipelineConfig.Data.probes);
-                brainRegions = obj.PipelineConfig.Data.brainRegions;
+                probeList = obj.parseProbeStr(obj.PipelineConfigs.Data.probes);
+                brainRegions = obj.PipelineConfigs.Data.brainRegions;
                 for i = 1:length(probeList)
                     probe = probeList{i};
                     brainRegion = brainRegions{i};
                     if stageName == "CatGT"
                         obj.L.info("Pipeline.m", strcat("Adding CatGT for probe ", probe));
-                        config = TaskConfig(json.CatGT);
-                        task = CatGT(strcat('CatGT probe', probe), probe, i, config, obj.L);
+                        task = CatGT(strcat('CatGT probe', probe), probe, i, obj.PipelineConfigs, obj.L);
                     elseif stageName == "KiloSort"
                         obj.L.info("Pipeline.m", strcat("Adding KiloSort for probe ", probe));
-                        config = TaskConfig(json.KiloSort);
-                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, config, obj.L);
+                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, obj.PipelineConfigs, obj.L);
                     elseif stageName == "TPrime"
                         obj.L.info("Pipeline.m", strcat("Adding TPrime for probe ", probe));
-                        config = TaskConfig(json.TPrime);
-                        task = TPrime(strcat('TPrime probe ', probe), probe, config, obj.L);
+                        task = TPrime(strcat('TPrime probe ', probe), probe, obj.PipelineConfigs, obj.L);
                     end
                     stage.addTask(task);
                 end

@@ -3,13 +3,13 @@ classdef (Abstract) Config < handle
     %   Detailed explanation goes here
 
     methods (Static)
-        function config = parseJson(fpath)
+        function configs = parseJson(fpath)
             try
                 fid = fopen(fpath); 
                 raw = fread(fid,inf); 
-                config = char(raw'); 
+                json = char(raw'); 
                 fclose(fid);
-                config = jsondecode(config);
+                configs = jsondecode(json);
             catch ME
                 import npxtoolkit.internal.thirdparty.logging.log4m
                 switch ME.identifier

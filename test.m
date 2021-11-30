@@ -1,7 +1,6 @@
 import npxtoolkit.session.Session
 import npxtoolkit.pipeline.Pipeline
-import npxtoolkit.config.Config
-import npxtoolkit.config.PipelineConfig
+import npxtoolkit.internal.config.Config
 
 import npxtoolkit.internal.thirdparty.logging.log4m
 %% main logger
@@ -24,15 +23,10 @@ logger.info("test.m", "Done with setting up Python environment!");
 
 
 %% ===========================================
-%% Configuration
-logger.info("test.m", "Parsing config file for pipeline...");
-json = Config.parseJson("configs/test_config.json");
-
 %% Auto-assembled pipeline
 logger.info("test.m", "Auto-assembling a pipeline based on the config file...");
-pipelineConfig = PipelineConfig(json.pipeline);
-pipeline = Pipeline('Pipeline0 Info', pipelineConfig, logger);
-pipeline.autoAssemble(json);
+pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json", logger);
+pipeline.autoAssemble();
 
 logger.info("test.m", "Adding the pipeline to session...");
 session.addPipeline(pipeline);
