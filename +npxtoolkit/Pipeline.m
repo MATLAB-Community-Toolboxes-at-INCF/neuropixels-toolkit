@@ -27,13 +27,12 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
         end
         
         function obj = autoAssemble(obj)
-            import npxtoolkit.stage.Stage
             import npxtoolkit.tasks.CatGT
             import npxtoolkit.tasks.KiloSort
             import npxtoolkit.tasks.TPrime
             obj.L.info("Pipeline.m", "Auto-assembling a pipeline based on the config file...");
             for stageName = obj.StageVal
-                stage = Stage(stageName);
+                stage = npxtoolkit.Stage(stageName);
                 obj.addStage(stage);
                 probeList = obj.parseProbeStr(obj.PipelineConfigs.Data.probes);
                 brainRegions = obj.PipelineConfigs.Data.brainRegions;

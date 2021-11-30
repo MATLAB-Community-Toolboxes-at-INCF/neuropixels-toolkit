@@ -1,5 +1,3 @@
-import npxtoolkit.session.Session
-import npxtoolkit.pipeline.Pipeline
 import npxtoolkit.internal.config.Config
 
 import npxtoolkit.internal.thirdparty.logging.log4m
@@ -10,7 +8,7 @@ logger.setLogLevel(logger.DEBUG);
 
 %% Processing Session
 % define session
-session = Session('Session Info');
+session = npxtoolkit.Session('Session Info');
 
 %% Setup Python env 
 % TODO - Future ENV Var 
@@ -21,7 +19,7 @@ session.setPyEnv(PYENV_PATH);
 
 %% ===========================================
 %% Auto-assembled pipeline
-pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json");
+pipeline = npxtoolkit.Pipeline('Pipeline0 Info', "configs/test_config.json");
 pipeline.autoAssemble();
 session.addPipeline(pipeline);
 session.parExecute();
@@ -29,30 +27,29 @@ session.parExecute();
 
 % %% ===========================================
 % %% Manually-assembled pipeline
-% import npxtoolkit.stage.Stage
 % import npxtoolkit.tasks.CatGT
 % import npxtoolkit.tasks.KiloSort
 % import npxtoolkit.tasks.TPrime
 
 % %% Pipeline 1
-% pipeline1 = Pipeline('Pipeline0 Info', "configs/test_config.json");
+% pipeline1 = npxtoolkit.Pipeline('Pipeline0 Info', "configs/test_config.json");
 
 % % CatGT stage
-% stageCatgt = Stage('CatGT');
+% stageCatgt = npxtoolkit.Stage('CatGT');
 % pipeline1.addStage(stageCatgt);
 % % CatGT task 1
 % taskCatgt1 = CatGT('CatGT probe 0', '0', 1, pipeline1.PipelineConfigs);
 % stageCatgt.addTask(taskCatgt1);
 
 % % KiloSort stage
-% stageKilo = Stage('KiloSort');
+% stageKilo = npxtoolkit.Stage('KiloSort');
 % pipeline1.addStage(stageKilo);
 % % KiloSort task 1
 % taskKilo1 = KiloSort('KiloSort probe 0', '0', 'cortex', pipeline1.PipelineConfigs);
 % stageKilo.addTask(taskKilo1);
 
 % % TPrime stage
-% stageTPrime = Stage('TPrime');
+% stageTPrime = npxtoolkit.Stage('TPrime');
 % pipeline1.addStage(stageTPrime);
 % % TPrime task 1
 % taskTPrime1 = TPrime('TPrime probe 0', '0', pipeline1.PipelineConfigs);
@@ -72,8 +69,6 @@ session.parExecute();
 % import npxtoolkit.tasks.TPrime
 % pipelineConfig = PipelineConfig("configs/test_config.json");
 % task = CatGT('CatGT probe 0', '0', 1, pipelineConfig);
-% % config = TaskConfig(json.KiloSort);
 % % task = KiloSort('KiloSort probe 0', '0', 'cortex', pipelineConfig);
-% % config = TaskConfig(json.TPrime);
 % % task = TPrime('TPrime probe 0', '0', pipelineConfig);
 % task.execute();
