@@ -28,7 +28,7 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
         end
         
         function execute(obj)
-            obj.L.info("CatGT.m", strcat("Running task: ", obj.Info));
+            obj.L.info("CatGT.m", "Running task: " + obj.Info);
             names = [fieldnames(obj.Configs.Tools); fieldnames(obj.Configs.Data); fieldnames(obj.Configs.CatGT)];
             configs = cell2struct([struct2cell(obj.Configs.Tools); struct2cell(obj.Configs.Data); struct2cell(obj.Configs.CatGT)], names, 1);
 
@@ -43,26 +43,26 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
             lastTrig = string(triggerList{2});
             triggerStr = strcat(firstTrig, ',', lastTrig);
             
-            obj.L.info(strcat("CatGT.m - ", obj.Info), strcat('Creating json file for CatGT on probe: ', prb));
-            catGTInputJson = fullfile(configs.jsonDir, strcat(configs.runName, prb, '_CatGT', '-input.json'));
-            catGTOutputJson = fullfile(configs.jsonDir, strcat(configs.runName, prb, '_CatGT', '-output.json'));
+            obj.L.info("CatGT.m - " + obj.Info, "Creating json file for CatGT on probe: " + prb);
+            catGTInputJson = fullfile(configs.jsonDir, strcat(configs.runName, prb, "_CatGT", "-input.json"));
+            catGTOutputJson = fullfile(configs.jsonDir, strcat(configs.runName, prb, "_CatGT", "-output.json"));
             
             % build extract string for SYNC channel for this probe
-            syncExtract = strcat(' -SY=', prb, ',-1,6,500');
+            syncExtract = strcat(" -SY=", prb, ",-1,6,500");
 
             % if this is the first probe proceessed, process the ni stream with it
             if taskIdx == 1 && configs.niPresent
-                catGTStreamString = '-ap -ni';
+                catGTStreamString = "-ap -ni";
                 extractString = strcat(syncExtract, ' ', configs.niExtractStr);
             else
-                catGTStreamString = '-ap';
+                catGTStreamString = "-ap";
                 extractString = syncExtract;
             end
 
             inputDataDirectory = probFolder;
-            fileName = strcat(runFolderName, '_t', firstTrig, '.imec', prb, '.ap.bin');
+            fileName = strcat(runFolderName, "_t", firstTrig, ".imec", prb, ".ap.bin");
             continuousFile = fullfile(inputDataDirectory, fileName);
-            metaName = strcat(runFolderName, '_t', firstTrig, '.imec', prb, '.ap.meta');
+            metaName = strcat(runFolderName, "_t", firstTrig, ".imec", prb, ".ap.meta");
             inputMetaFullpath = fullfile(inputDataDirectory, metaName);
 
             info = py.py_modules.caller.createInputJson(...
@@ -96,14 +96,13 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
 
             if configs.runCatGT
                 % TODO - reduce python
-                params = strcat("-W ignore -m ecephys_spike_sorting.modules.catGT_helper",...
-                                " --input_json ", catGTInputJson,...
-                                " --output_json ", catGTOutputJson);
-                obj.L.debug(strcat("CatGT.m - ", obj.Info), strcat("python ", params));
+                params = "-W ignore -m ecephys_spike_sorting.modules.catGT_helper --input_json " + ...
+                         catGTInputJson + " --output_json " + catGTOutputJson;
+                obj.L.debug("CatGT.m - " + obj.Info, "python " + params);
                 py.py_modules.caller.call_python(params);
-                obj.L.info(strcat("CatGT.m - ", obj.Info), "Done!");
+                obj.L.info("CatGT.m - " + obj.Info, "Done!");
             else
-                obj.L.info(strcat("CatGT.m - ", obj.Info), "Skipped!");
+                obj.L.info("CatGT.m - " + obj.Info, "Skipped!");
             end
         end
     end

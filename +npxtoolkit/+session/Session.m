@@ -26,7 +26,7 @@ classdef Session < handle
             % sessions can run in parallel
             obj.L.info("Session.m", "Executing session...");
             for curr = obj.Pipelines
-                obj.L.info("Session.m", strcat("Excuting Pipeline: ", curr.Info, "..."));
+                obj.L.info("Session.m", "Excuting Pipeline: " + curr.Info + "...");
                 curr.execute();
             end
             obj.L.info("Session.m", "Session execution done!");

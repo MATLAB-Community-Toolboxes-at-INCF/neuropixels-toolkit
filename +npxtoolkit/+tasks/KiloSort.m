@@ -25,7 +25,7 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
         end
         
         function execute(obj)
-            obj.L.info("KiloSort.m", strcat("Running task: ", obj.Info));
+            obj.L.info("KiloSort.m", "Running task: " + obj.Info);
             names = [fieldnames(obj.Configs.Tools); fieldnames(obj.Configs.Data); fieldnames(obj.Configs.KiloSort)];
             configs = cell2struct([struct2cell(obj.Configs.Tools); struct2cell(obj.Configs.Data); struct2cell(obj.Configs.KiloSort)], names, 1);
 
@@ -52,7 +52,7 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
             
             ksTh = getfield(configs.ksThDict, brainRegion);
             refPerMS = getfield(configs.refPerMSDict, brainRegion);
-            obj.L.debug(strcat("KiloSort.m - ", obj.Info), strcat('ksTh: ', ksTh, ' ,refPerMS: ', string(refPerMS)));
+            obj.L.debug("KiloSort.m - " + obj.Info, "ksTh: " + ksTh + " ,refPerMS: " + string(refPerMS));
 
             moduleInputJson = fullfile(configs.jsonDir, strcat(runFolderName, '-input.json'));
 
@@ -96,17 +96,17 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
 
             for i=1:length(configs.modules)
                 moduleName = configs.modules{i};
-                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("Running module: ", moduleName));
+                obj.L.info("KiloSort.m - " + obj.Info, "Running module: " + moduleName);
                 outputJson = fullfile(configs.jsonDir, strcat(runFolderName, '-', moduleName, '-output.json'));
                 % TODO - reduce python
-                params = strcat("-W ignore -m ecephys_spike_sorting.modules.", moduleName,...
-                                " --input_json ", moduleInputJson,...
-                                " --output_json ", outputJson);
-                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("python ", params));
+                params = "-W ignore -m ecephys_spike_sorting.modules." + moduleName + ...
+                                " --input_json " + moduleInputJson + ...
+                                " --output_json " + outputJson;
+                obj.L.info("KiloSort.m - " + obj.Info, "python " + params);
                 py.py_modules.caller.call_python(params);
-                obj.L.info(strcat("KiloSort.m - ", obj.Info), strcat("Module: ", moduleName, "Done!"));
+                obj.L.info("KiloSort.m - " + obj.Info, "Module: " + moduleName + "Done!");
             end
-            obj.L.info(strcat("KiloSort.m - ", obj.Info), "Done!");
+            obj.L.info("KiloSort.m - " + obj.Info, "Done!");
         end
     end
 end

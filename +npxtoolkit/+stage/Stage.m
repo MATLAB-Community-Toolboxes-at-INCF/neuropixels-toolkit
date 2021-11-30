@@ -24,11 +24,11 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
         function parExecute(obj)
             % TODO - tasks can run in parallel
             for curr = obj.TaskQueue
-                obj.L.info(strcat("Stage.m - ", obj.Info), strcat("Excuting Task: ", curr.Info));
+                obj.L.info("Stage.m - " + obj.Info, "Excuting Task: " + curr.Info);
                 try
                     curr.execute();
                 catch ME
-                    obj.L.error("Error - Stage.m curr.execute", strcat(curr.Info, " Execution"));
+                    obj.L.error("Error - Stage.m curr.execute", curr.Info + " Execution");
                     rethrow(ME);
                 end
             end

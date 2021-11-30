@@ -41,14 +41,14 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
                     probe = probeList{i};
                     brainRegion = brainRegions{i};
                     if stageName == "CatGT"
-                        obj.L.info("Pipeline.m", strcat("Adding CatGT for probe ", probe));
-                        task = CatGT(strcat('CatGT probe', probe), probe, i, obj.PipelineConfigs);
+                        obj.L.info("Pipeline.m", "Adding CatGT for probe " + probe);
+                        task = CatGT("CatGT probe" + probe, probe, i, obj.PipelineConfigs);
                     elseif stageName == "KiloSort"
-                        obj.L.info("Pipeline.m", strcat("Adding KiloSort for probe ", probe));
-                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, obj.PipelineConfigs);
+                        obj.L.info("Pipeline.m", "Adding KiloSort for probe " + probe);
+                        task = KiloSort("KiloSort probe " + probe, probe, brainRegion, obj.PipelineConfigs);
                     elseif stageName == "TPrime"
-                        obj.L.info("Pipeline.m", strcat("Adding TPrime for probe ", probe));
-                        task = TPrime(strcat('TPrime probe ', probe), probe, obj.PipelineConfigs);
+                        obj.L.info("Pipeline.m", "Adding TPrime for probe " + probe);
+                        task = TPrime("TPrime probe " + probe, probe, obj.PipelineConfigs);
                     end
                     stage.addTask(task);
                 end
@@ -59,7 +59,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             % stages have to run in sequence, because of result dependency
             for curr = obj.Stages
                 obj.CurrentStage = curr;
-                obj.L.info(strcat("Pipeline.m - ", obj.Info), strcat("Executing Stage: ", curr.Info));
+                obj.L.info("Pipeline.m - " + obj.Info, "Executing Stage: " + curr.Info);
                 curr.parExecute();
             end
         end

@@ -15,9 +15,7 @@ session = Session('Session Info', logger);
 %% Setup Python env 
 % TODO - Future ENV Var 
 PYENV_PATH = '/home/ubuntu/anaconda3/envs/npx/bin/python';
-logger.info("test.m", "Setting up Python environment...");
 session.setPyEnv(PYENV_PATH);
-logger.info("test.m", "Done with setting up Python environment!");
 % init session by pipelines, stages and jobs
 
 
@@ -25,7 +23,6 @@ logger.info("test.m", "Done with setting up Python environment!");
 %% Auto-assembled pipeline
 pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json", logger);
 pipeline.autoAssemble();
-
 session.addPipeline(pipeline);
 session.parExecute();
 

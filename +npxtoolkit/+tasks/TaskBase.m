@@ -18,7 +18,7 @@ classdef (Abstract) TaskBase < matlab.mixin.Heterogeneous & handle
             tFiles = dir(fullfile(prbFolder,'*.bin'));
             minIndex =  intmax;
             maxIndex = 0;
-            searchStr = strcat('_g', gate, '_t');
+            searchStr = "_g" + gate+ "_t";
             % for tName in tFiles:
             %     if (fnmatch.fnmatch(tName,'*.bin')):
             %         gPos = tName.find(searchStr)
