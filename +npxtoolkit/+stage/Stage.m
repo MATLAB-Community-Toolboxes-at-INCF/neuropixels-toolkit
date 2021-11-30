@@ -10,10 +10,11 @@ classdef Stage < matlab.mixin.Heterogeneous & handle
     end
     
     methods
-        function obj = Stage(stageInfo, logger)
+        function obj = Stage(stageInfo)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = stageInfo;
             obj.TaskQueue = [];
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
         end
 
         function obj = addTask(obj, task)

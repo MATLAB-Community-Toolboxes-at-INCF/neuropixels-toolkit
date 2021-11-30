@@ -10,21 +10,26 @@ classdef Session < handle
     
     methods
         function obj = Session(sessionInfo, logger)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = sessionInfo;
             obj.Pipelines = [];
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
+            obj.L.info("Session.m", "Creating a session...");
         end
         
         function obj = addPipeline(obj, pipeline)
+            obj.L.info("Session.m", "Adding the pipeline to session...");
             obj.Pipelines = [obj.Pipelines, pipeline];
         end
 
         function parExecute(obj)
             % sessions can run in parallel
+            obj.L.info("Session.m", "Executing session...");
             for curr = obj.Pipelines
                 obj.L.info("Session.m", strcat("Excuting Pipeline: ", curr.Info, "..."));
                 curr.execute();
             end
+            obj.L.info("Session.m", "Session execution done!");
         end
     end
 

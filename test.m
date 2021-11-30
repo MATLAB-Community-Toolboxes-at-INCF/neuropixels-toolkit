@@ -10,7 +10,6 @@ logger.setLogLevel(logger.DEBUG);
 
 %% Processing Session
 % define session
-logger.info("test.m", "Creating a session...");
 session = Session('Session Info', logger);
 
 %% Setup Python env 
@@ -24,15 +23,11 @@ logger.info("test.m", "Done with setting up Python environment!");
 
 %% ===========================================
 %% Auto-assembled pipeline
-logger.info("test.m", "Auto-assembling a pipeline based on the config file...");
 pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json", logger);
 pipeline.autoAssemble();
 
-logger.info("test.m", "Adding the pipeline to session...");
 session.addPipeline(pipeline);
-logger.info("test.m", "Executing session...");
 session.parExecute();
-logger.info("test.m", "Session execution done!");
 
 
 % %% ===========================================

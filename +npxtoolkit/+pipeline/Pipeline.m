@@ -19,7 +19,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             obj.PipelineConfigs = PipelineConfig(config_path);
             obj.CurrentStage = -1;
             obj.Stages = [];
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
         end
 
         function obj = addStage(obj, stage)
@@ -31,8 +31,9 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
             import npxtoolkit.tasks.CatGT
             import npxtoolkit.tasks.KiloSort
             import npxtoolkit.tasks.TPrime
+            obj.L.info("Pipeline.m", "Auto-assembling a pipeline based on the config file...");
             for stageName = obj.StageVal
-                stage = Stage(stageName, obj.L);
+                stage = Stage(stageName);
                 obj.addStage(stage);
                 probeList = obj.parseProbeStr(obj.PipelineConfigs.Data.probes);
                 brainRegions = obj.PipelineConfigs.Data.brainRegions;
@@ -41,13 +42,13 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
                     brainRegion = brainRegions{i};
                     if stageName == "CatGT"
                         obj.L.info("Pipeline.m", strcat("Adding CatGT for probe ", probe));
-                        task = CatGT(strcat('CatGT probe', probe), probe, i, obj.PipelineConfigs, obj.L);
+                        task = CatGT(strcat('CatGT probe', probe), probe, i, obj.PipelineConfigs);
                     elseif stageName == "KiloSort"
                         obj.L.info("Pipeline.m", strcat("Adding KiloSort for probe ", probe));
-                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, obj.PipelineConfigs, obj.L);
+                        task = KiloSort(strcat('KiloSort probe ', probe), probe, brainRegion, obj.PipelineConfigs);
                     elseif stageName == "TPrime"
                         obj.L.info("Pipeline.m", strcat("Adding TPrime for probe ", probe));
-                        task = TPrime(strcat('TPrime probe ', probe), probe, obj.PipelineConfigs, obj.L);
+                        task = TPrime(strcat('TPrime probe ', probe), probe, obj.PipelineConfigs);
                     end
                     stage.addTask(task);
                 end

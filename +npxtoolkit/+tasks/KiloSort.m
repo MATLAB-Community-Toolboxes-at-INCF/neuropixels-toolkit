@@ -12,7 +12,8 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
     end
     
     methods
-        function obj = KiloSort(taskInfo, probe, brainRegion, configs, logger)
+        function obj = KiloSort(taskInfo, probe, brainRegion, configs)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = taskInfo;
             obj.Probe = probe;
             obj.BrainRegion = brainRegion;
@@ -20,7 +21,7 @@ classdef KiloSort < npxtoolkit.tasks.TaskBase
                 configs.KiloSort.noiseTemplateUseRf = str2num(configs.KiloSort.noiseTemplateUseRf);
             end
             obj.Configs = configs;
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
         end
         
         function execute(obj)

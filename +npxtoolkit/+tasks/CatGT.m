@@ -12,7 +12,8 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
     end
     
     methods
-        function obj = CatGT(taskInfo, probe, order, configs, logger)
+        function obj = CatGT(taskInfo, probe, order, configs)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = taskInfo;
             obj.Probe = probe;
             obj.Order = order;
@@ -23,7 +24,7 @@ classdef CatGT < npxtoolkit.tasks.TaskBase
                 configs.CatGT.niPresent = str2num(configs.CatGT.niPresent);
             end
             obj.Configs = configs;
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
         end
         
         function execute(obj)

@@ -8,7 +8,8 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
     end
 
     methods
-        function obj = TPrime(taskInfo, probe, configs, logger)
+        function obj = TPrime(taskInfo, probe, configs)
+            import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = taskInfo;
             obj.Probe = probe;
             if class(configs.TPrime.runTPrime)=="char"
@@ -18,7 +19,7 @@ classdef TPrime < npxtoolkit.tasks.TaskBase
                 configs.TPrime.tPrime3A = str2num(configs.TPrime.tPrime3A);
             end
             obj.Configs = configs;
-            obj.L = logger;
+            obj.L = log4m.getLogger("npx.log");
         end
         
         function execute(obj)
