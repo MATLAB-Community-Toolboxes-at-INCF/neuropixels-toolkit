@@ -12,7 +12,7 @@ classdef Pipeline < matlab.mixin.Heterogeneous & handle
     end
     
     methods
-        function obj = Pipeline(pipelineInfo, config_path, logger)
+        function obj = Pipeline(pipelineInfo, config_path)
             import npxtoolkit.internal.config.PipelineConfig
             import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = pipelineInfo;

@@ -10,7 +10,7 @@ logger.setLogLevel(logger.DEBUG);
 
 %% Processing Session
 % define session
-session = Session('Session Info', logger);
+session = Session('Session Info');
 
 %% Setup Python env 
 % TODO - Future ENV Var 
@@ -21,7 +21,7 @@ session.setPyEnv(PYENV_PATH);
 
 %% ===========================================
 %% Auto-assembled pipeline
-pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json", logger);
+pipeline = Pipeline('Pipeline0 Info', "configs/test_config.json");
 pipeline.autoAssemble();
 session.addPipeline(pipeline);
 session.parExecute();

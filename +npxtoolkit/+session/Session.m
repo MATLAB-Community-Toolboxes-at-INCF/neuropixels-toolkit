@@ -9,7 +9,7 @@ classdef Session < handle
     end
     
     methods
-        function obj = Session(sessionInfo, logger)
+        function obj = Session(sessionInfo)
             import npxtoolkit.internal.thirdparty.logging.log4m
             obj.Info = sessionInfo;
             obj.Pipelines = [];
