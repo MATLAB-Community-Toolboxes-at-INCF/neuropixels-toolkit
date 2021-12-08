@@ -26,7 +26,7 @@
     },
     
     "CatGT": {
-        "runCatGT": "false",
+        "runCatGT": "true",
         "carMode": "gblcar",
         "loccarMin": 40,
         "loccarMax": 160,
