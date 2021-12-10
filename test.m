@@ -17,7 +17,7 @@ session.setPyEnv(PYENV_PATH);
 % init session by pipelines, stages and jobs
 
 
-%% ===========================================
+% %% ===========================================
 % %% Auto-assembled pipeline
 % pipeline = npxtoolkit.Pipeline('Pipeline0 Info', "configs/test_config.json");
 % pipeline.autoAssemble();
@@ -61,14 +61,14 @@ session.setPyEnv(PYENV_PATH);
 % session.parExecute();
 
 
-% %% ===========================================
+%% ===========================================
 %% Configuration
 import npxtoolkit.internal.config.PipelineConfig
 import npxtoolkit.tasks.CatGT
 import npxtoolkit.tasks.KiloSort
 import npxtoolkit.tasks.TPrime
 pipelineConfig = PipelineConfig("configs/test_config.json");
-task = CatGT('CatGT probe 0', '0', 1, pipelineConfig);
+% task = CatGT('CatGT probe 0', '0', 1, pipelineConfig);
 % task = KiloSort('KiloSort probe 0', '0', 'cortex', pipelineConfig);
-% task = TPrime('TPrime probe 0', '0', pipelineConfig);
+task = TPrime('TPrime probe 0', '0', pipelineConfig);
 task.execute();

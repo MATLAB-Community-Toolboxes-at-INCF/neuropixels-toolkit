@@ -15,12 +15,12 @@
             "jsonDir": "/home/ubuntu/neuropixel/neuropixels-toolkit/configs",
             "rootDataDir": "/home/ubuntu/neuropixel/data_for_ecephys",
             "dataDir": "subject1_session1",
-            "logName": "SC011_021919_log.csv",
+            "logName": "towersTask_log.csv",
             "spikeGLXData": "true",
-            "runName": "SC011_021919",
+            "runName": "towersTask",
             "gateIdx": "0",
             "triggers": "0,0",
-            "probes": "0,1,2",
+            "probes": "0",
             "brainRegions": ["cortex", "thalamus", "default"]
         }
     },
@@ -65,7 +65,7 @@
     },
     
     "TPrime": {
-        "runTPrime": "false",
+        "runTPrime": "true",
         "imExList": "",
         "syncPeriod": 1.0,
         "toStreamSyncParams": "XA=0,1,3,500",
