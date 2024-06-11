@@ -1,5 +1,8 @@
 % Set the path to the Python executable
-% pyversion('~/.conda/envs/mat-spike-sort/bin/python'); % Linux/Mac example
+% Linux example:
+%pyversion('~/.conda/envs/mat-spike-sort/bin/python'); 
+% MacOS brew example:
+% pyversion('/usr/local/anaconda3/envs/mat-spike-sort/bin/python')
 
 % Verify the Python configuration
 pyversion
