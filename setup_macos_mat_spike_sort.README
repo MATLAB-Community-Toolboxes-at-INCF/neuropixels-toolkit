@@ -1,0 +1,37 @@
+# Set up instructions for running Matlab/Python pipeline on MacOS
+
+## Step 1: Install **brew** if you don't have it
+
+Brew is a package manager for MacOS. Please see [brew.sh](https://brew.sh/) for installation instructions.
+
+## Step 2: Install **anaconda**
+
+Anaconda is a python environment manager
+
+You can do this by opening a Terminal.
+
+1. Run the following: `brew install anaconda`
+2. Next, identify where the installation occurred. The location will vary depending upon whether your computer runs Apple Silicon or Intel chips. For Apple Silcon, the installation will be at `/opt/homebrew/anaconda3/bin` and for Intel chips it will be at `/user/local/anaconda3/bin`.
+3. On the terminal, write `export PATH="/opt/homebrew/anaconda3/bin:$PATH"` or write `export PATH="/usr/local/anaconda3/bin:$PATH"` if you have an Intel Mac.
+4. Leave this terminal open for additional work. You'll need to export the anaconda path each time you want to run the setup file.
+
+## Step 3: Install **git-annex**
+
+1. In a terminal, write `brew install git-annex`
+2. Make sure to start the service with `brew services start git-annex`
+
+## Step 4. Install **datalad**
+
+1. In a terminal, write `brew install datalad`
+
+## Step 5: Run the installation commands
+
+On the same terminal window as you have been using, enter the following commands:
+
+1. `conda create --name mat-spike-sort python=3.9.0 -y`
+2. `source activate mat-spike-sort`
+3. `python -m pip install --user numpy scipy matplotlib ipython jupyter pandas`
+4. `conda install -c conda-forge datalad -y`
+5. `pip install networkx MEArec scikit-learn spikeinterface==0.96.1`
+
+
