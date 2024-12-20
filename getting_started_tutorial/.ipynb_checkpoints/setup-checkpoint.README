@@ -1,0 +1,85 @@
+## Setup Instructions for `getting_started tutorials` 
+
+### Create a Conda Environment
+
+1. Create a new conda environment with Python 3.9.0:
+
+    ```sh
+    conda create --name spike-sort python=3.9.0 -y
+    ```
+
+2. Activate the newly created conda environment:
+
+    ```sh
+    source activate spike-sort
+    ```
+
+### Install Python Package
+
+Navigate to the directory where `neuropixels-toolkit/setup.py` is located and install the package:
+
+```sh
+pip install -e .
+```
+
+### Additional Installation
+
+#### Install `git-annex`
+
+Refer to the official [git-annex installation page](https://git-annex.branchable.com/install/) for more details.
+
+- **Linux System**:
+
+    ```sh
+    # Update package list
+    sudo apt-get update
+    # Install git-annex
+    sudo apt-get install git-annex -y
+    ```
+
+- **macOS System**:
+
+    ```sh
+    brew install git-annex
+    ```
+
+#### Install Kilosort3
+
+Refer to the [Kilosort GitHub page](https://github.com/MouseLand/Kilosort) and release tag v3.0.2 for more details.
+
+**System Requirements**:
+- Linux and Windows 64-bit are supported for running the code.
+- At least 8GB of GPU RAM is required to run the software.
+
+- **Linux System**:
+
+    ```sh
+    # Install Kilosort3
+    cd /opt \
+        && sudo curl -LJO https://github.com/MouseLand/Kilosort/archive/refs/tags/v3.0.2.zip \
+        && sudo unzip v3.0.2.zip \
+        && sudo mv /opt/Kilosort-3.0.2 /opt/Kilosort-3 \
+        && sudo rm -rf /opt/v3.0.2.zip \
+        && sudo matlab -nodesktop -nosplash -r "cd('/opt/Kilosort-3/CUDA'); mexGPUall; addpath(genpath('/opt/Kilosort-3')); savepath; exit;" \
+        && sudo chown -R jovyan:jovyan /opt/Kilosort-3
+    
+    # In Jupyter: ss.Kilosort3Sorter.set_kilosort3_path('/opt/Kilosort-3')
+    ```
+
+### Identify the Python Interpreter
+
+Find the path to the Python interpreter in the conda environment:
+
+```sh
+which python
+# Example output:
+# /home/username/.conda/envs/spike-sort/bin/python
+```
+
+### Configure Python in MATLAB
+
+Set the Python interpreter in MATLAB using the path captured from the previous step:
+
+```matlab
+pyversion('/home/username/.conda/envs/spike-sort/bin/python')
+```
