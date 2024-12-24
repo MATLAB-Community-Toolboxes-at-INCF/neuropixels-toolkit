@@ -41,9 +41,9 @@ classdef Kilosort3Sorter
         function obj = initialize_folder(obj, output_folder)
             % Initializes the output folder for Kilosort3.
             if nargin < 2
-                output_folder = 'kilosort3_input'; % Default folder name
+                output_folder = fullfile(pwd,'kilosort3_input'); % Default folder name
             end
-            obj.sorter_output_folder = fullfile(pwd, output_folder);
+            obj.sorter_output_folder = output_folder;
             if ~exist(obj.sorter_output_folder, 'dir')
                 mkdir(obj.sorter_output_folder);
             end

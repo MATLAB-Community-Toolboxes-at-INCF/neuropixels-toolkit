@@ -19,7 +19,7 @@ fprintf('Sampling Rate: %.2f Hz\n', recording.get_signal_sampling_rate());
 sorter = Kilosort3Sorter();
 
 % Initialize the folder for Kilosort3 inputs
-sorter = sorter.initialize_folder(folder);
+sorter = sorter.initialize_folder(fpath);
 
 % Set the parameters and save them to the folder
 sorter.set_params_to_folder(recording);

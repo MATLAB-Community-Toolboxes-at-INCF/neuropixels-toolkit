@@ -11,6 +11,7 @@ end
 
 % Helper function to recursively load datasets and groups from the HDF5 file
 function currentStruct = recursively_load_datasets(h5file, h5infoObj, currentStruct, currentPath)
+    hd5fileSep = '/';
     % Loop through each group in the current HDF5 object
     for i = 1:length(h5infoObj.Groups)
         group_name = h5infoObj.Groups(i).Name;
@@ -29,7 +30,11 @@ function currentStruct = recursively_load_datasets(h5file, h5infoObj, currentStr
         dataset_name = matlab.lang.makeValidName(strrep(dataset_name, currentPath, '')); % Remove the current path
         
         % Construct the full path for the dataset
-        dataset_path = fullfile(currentPath, dataset_name);
+        if strcmp(currentPath,hd5fileSep)
+            dataset_path = [hd5fileSep dataset_name];
+        else
+            dataset_path = [currentPath hd5fileSep dataset_name];
+        end
         
         % Read the dataset and add it to the current struct
         dataset_data = h5read(h5file, dataset_path);
